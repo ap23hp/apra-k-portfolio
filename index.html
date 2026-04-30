@@ -1138,26 +1138,26 @@
       const back  = card.querySelector('.flip-back-face');
 
       function syncHeight() {
-        back.style.position = 'static';
-        back.style.transform = 'none';
-        back.style.visibility = 'hidden';
-        const bH = back.offsetHeight;
-        back.style.position = '';
-        back.style.transform = '';
-        back.style.visibility = '';
+  const isFlipped = card.classList.contains('is-flipped');
+  const active = isFlipped ? back : front;
+  const inactive = isFlipped ? front : back;
 
-        front.style.position = 'static';
-        front.style.transform = 'none';
-        front.style.visibility = 'hidden';
-        const fH = front.offsetHeight;
-        front.style.position = '';
-        front.style.transform = '';
-        front.style.visibility = '';
+  // measure inactive (hidden) face
+  inactive.style.position = 'static';
+  inactive.style.transform = 'none';
+  inactive.style.visibility = 'hidden';
+  const inactiveH = inactive.offsetHeight;
+  inactive.style.position = '';
+  inactive.style.transform = '';
+  inactive.style.visibility = '';
 
-        card.style.height = (card.classList.contains('is-flipped') ? bH : fH) + 'px';
-        card.parentElement.style.minHeight = card.style.height;
-      }
+  // measure active face normally
+  const activeH = active.offsetHeight;
 
+  const h = isFlipped ? activeH : inactiveH;
+  card.style.height = h + 'px';
+  card.parentElement.style.minHeight = h + 'px';
+}
       syncHeight();
       card.addEventListener('click', function(e) {
         if (e.target.closest('a')) return;
