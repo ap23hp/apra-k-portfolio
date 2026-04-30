@@ -882,18 +882,39 @@
       </div>
       <div class="proj-grid2">
 
-        <a href="https://github.com/ap23hp" target="_blank" rel="noopener" class="proj-card2 span2 reveal">
-          <div>
-            <div class="proj-num2">01 · WordPress Plugin</div>
-            <h3>Milani Core — City Routing Plugin</h3>
-            <p>Built a full geolocation routing system for a Canadian electrical company. GPS → IP → postal code fallback chain, custom rewrite rules, city-based CPTs, lead gen forms with DB storage, and JSON-LD structured data.</p>
-            <div class="proj-tags">
-              <span class="ptag">PHP</span><span class="ptag">WordPress</span><span class="ptag">Google Maps API</span><span class="ptag">AJAX</span>
-              <span class="ptag g">Custom CPTs</span><span class="ptag g">Schema.org</span><span class="ptag g">MySQL</span>
+        <!-- MILANI FLIP CARD -->
+        <div class="proj-card2-wrap reveal" style="grid-column: span 2;">
+          <div class="proj-card2-flip" id="flipCard0">
+            <!-- FRONT -->
+            <div class="proj-card2 flip-front-face">
+              <div class="proj-num2">01 · WordPress Plugin</div>
+              <h3>Milani Core — City Routing Plugin</h3>
+              <p>Built a full geolocation routing system for a Canadian electrical company. GPS → IP → postal code fallback chain, custom rewrite rules, city-based CPTs, lead gen forms with DB storage, and JSON-LD structured data.</p>
+              <div class="proj-tags">
+                <span class="ptag">PHP</span><span class="ptag">WordPress</span><span class="ptag">Google Maps API</span><span class="ptag">AJAX</span>
+                <span class="ptag g">Custom CPTs</span><span class="ptag g">Schema.org</span><span class="ptag g">MySQL</span>
+              </div>
+              <div class="flip-hint">flip for details ↷</div>
+            </div>
+            <!-- BACK -->
+            <div class="proj-card2 flip-back-face">
+              <div class="proj-num2">01 · WordPress Plugin</div>
+              <h3>What I built</h3>
+              <ul class="flip-bullets">
+                <li>Built a custom WordPress plugin from scratch handling all site logic independent of the theme — CPTs, URL routing, geolocation, forms, and structured data</li>
+                <li>Engineered a 3-step geolocation fallback chain (Browser GPS → IP detection → postal code search) to auto-redirect users to their nearest city's page</li>
+                <li>Designed a clean URL architecture (<code style="font-size:11px;opacity:0.8;">/vancouver/ev-chargers/</code>) using custom rewrite rules mapping to CPT posts</li>
+                <li>Built a city-aware shortcode system so Bricks Builder templates stay reusable across all city pages</li>
+                <li>Implemented LocalBusiness JSON-LD structured data dynamically generated per city/service page for local SEO</li>
+                <li>Integrated a lead capture system with reCAPTCHA v3, DB storage, and email notifications</li>
+              </ul>
+              <div class="flip-back-btns">
+                <a href="https://github.com/ap23hp" target="_blank" rel="noopener" class="flip-btn-cs">GitHub →</a>
+                <span class="flip-btn-live" style="cursor:default;">Case study coming soon — site launching Q3 2025</span>
+              </div>
             </div>
           </div>
-          <div class="arr-box">↗</div>
-        </a>
+        </div>
 
         <!-- GTG FLIP CARD -->
         <div class="proj-card2-wrap reveal d1">
@@ -1144,6 +1165,7 @@
       });
     }
 
+    makeFlipCard('#flipCard0');
     makeFlipCard('#flipCard1');
     makeFlipCard('#flipCard2');
   </script>
