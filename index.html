@@ -447,19 +447,29 @@
     }
 
     /* FLIP CARD */
-    .proj-card2-wrap { /* inherits grid cell sizing */ }
+    .proj-card2-wrap {
+      min-height: 320px;
+    }
 
     .proj-card2-flip {
-      position: relative; height: 100%; min-height: 320px;
-      perspective: 1000px; cursor: pointer;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      perspective: 1000px;
+      cursor: pointer;
+      transform-style: preserve-3d;
     }
 
     .proj-card2-flip .flip-front-face,
     .proj-card2-flip .flip-back-face {
-      position: absolute; inset: 0;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      min-height: 100%;
       backface-visibility: hidden; -webkit-backface-visibility: hidden;
       transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
-      display: flex; flex-direction: column; height: 100%;
+      display: flex; flex-direction: column;
+      padding-bottom: 28px;
     }
 
     .proj-card2-flip .flip-front-face { transform: rotateY(0deg); }
@@ -1085,9 +1095,38 @@
 
     const flipCard = document.querySelector('.proj-card2-flip');
     if (flipCard) {
+      const front = flipCard.querySelector('.flip-front-face');
+      const back  = flipCard.querySelector('.flip-back-face');
+
+      function syncHeight() {
+        const isFlipped = flipCard.classList.contains('is-flipped');
+        back.style.position  = 'static';
+        back.style.transform = 'none';
+        back.style.visibility = 'hidden';
+        const bH = back.offsetHeight;
+        back.style.position  = '';
+        back.style.transform = '';
+        back.style.visibility = '';
+
+        front.style.position  = 'static';
+        front.style.transform = 'none';
+        front.style.visibility = 'hidden';
+        const fH = front.offsetHeight;
+        front.style.position  = '';
+        front.style.transform = '';
+        front.style.visibility = '';
+
+        const h = isFlipped ? bH : fH;
+        flipCard.style.height = h + 'px';
+        flipCard.parentElement.style.minHeight = h + 'px';
+      }
+
+      syncHeight();
+
       flipCard.addEventListener('click', function(e) {
         if (e.target.closest('a')) return;
         this.classList.toggle('is-flipped');
+        syncHeight();
       });
     }
   </script>
