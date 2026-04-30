@@ -939,15 +939,41 @@
           </div>
         </div>
 
-        <a href="https://ai-chef-react-by-apra.netlify.app/" target="_blank" rel="noopener" class="proj-card2 reveal d2">
-          <div class="proj-num2">03 · React App</div>
-          <h3>AI Chef — Recipe Generator</h3>
-          <p>React app that generates recipes from available ingredients using an AI API. Component architecture with hooks and state management.</p>
-          <div class="proj-tags">
-            <span class="ptag">React</span><span class="ptag">AI API</span><span class="ptag g">Hooks</span><span class="ptag g">Netlify</span>
-          </div>
-          <div class="arr-box" style="margin-top:16px;align-self:flex-start;">↗</div>
-        </a>
+      <!-- AI CHEF FLIP CARD — replace the existing proj-card2 anchor tag for AI Chef -->
+<div class="proj-card2-wrap reveal d2">
+  <div class="proj-card2-flip" id="flipCard2">
+    <!-- FRONT -->
+    <div class="proj-card2 flip-front-face">
+      <div class="proj-num2">03 · React App</div>
+      <h3>AI Chef — Recipe Generator</h3>
+      <p>React app that generates recipes from available ingredients using an AI API. Component architecture with hooks, state management, and a serverless backend on Netlify Functions.</p>
+      <div class="proj-tags">
+        <span class="ptag">React</span>
+        <span class="ptag">Vite</span>
+        <span class="ptag">AI API</span>
+        <span class="ptag g">Hooks</span>
+        <span class="ptag g">Netlify Functions</span>
+        <span class="ptag g">Serverless</span>
+      </div>
+      <div class="flip-hint">flip for details ↷</div>
+    </div>
+    <!-- BACK -->
+    <div class="proj-card2 flip-back-face">
+      <div class="proj-num2">03 · React App</div>
+      <h3>What I built</h3>
+      <ul class="flip-bullets">
+        <li>Component architecture — Header + Main split into reusable React components</li>
+        <li>useState hooks managing ingredient list, recipe output, and loading/error states</li>
+        <li>Serverless backend via Netlify Functions — API key never exposed to client</li>
+        <li>React Markdown rendering AI-generated recipe output with custom CSS</li>
+      </ul>
+      <div class="flip-back-btns">
+        <a href="https://ai-chef-react-by-apra.netlify.app/" target="_blank" rel="noopener" class="flip-btn-cs">↗ Live site</a>
+        <a href="https://github.com/ap23hp/AI-Chef-React" target="_blank" rel="noopener" class="flip-btn-live">GitHub →</a>
+      </div>
+    </div>
+  </div>
+</div>
 
         <a href="https://ap23hp.github.io/Weather-App/" target="_blank" rel="noopener" class="proj-card2 reveal d1">
           <div class="proj-num2">04 · JavaScript</div>
