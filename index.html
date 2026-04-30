@@ -447,29 +447,19 @@
     }
 
     /* FLIP CARD */
-    .proj-card2-wrap {
-      min-height: 320px;
-    }
+    .proj-card2-wrap { min-height: 320px; }
 
     .proj-card2-flip {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: 320px;
-      perspective: 1000px;
-      cursor: pointer;
-      transform-style: preserve-3d;
+      position: relative; width: 100%; height: 100%; min-height: 320px;
+      perspective: 1000px; cursor: pointer; transform-style: preserve-3d;
     }
 
     .proj-card2-flip .flip-front-face,
     .proj-card2-flip .flip-back-face {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      min-height: 100%;
+      position: absolute; top: 0; left: 0; right: 0; min-height: 100%;
       backface-visibility: hidden; -webkit-backface-visibility: hidden;
       transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
-      display: flex; flex-direction: column;
-      padding-bottom: 28px;
+      display: flex; flex-direction: column; padding-bottom: 28px;
     }
 
     .proj-card2-flip .flip-front-face { transform: rotateY(0deg); }
@@ -907,7 +897,7 @@
 
         <!-- GTG FLIP CARD -->
         <div class="proj-card2-wrap reveal d1">
-          <div class="proj-card2-flip">
+          <div class="proj-card2-flip" id="flipCard1">
             <!-- FRONT -->
             <div class="proj-card2 flip-front-face">
               <div class="proj-num2">02 · E-commerce UI</div>
@@ -939,41 +929,41 @@
           </div>
         </div>
 
-      <!-- AI CHEF FLIP CARD — replace the existing proj-card2 anchor tag for AI Chef -->
-<div class="proj-card2-wrap reveal d2">
-  <div class="proj-card2-flip" id="flipCard2">
-    <!-- FRONT -->
-    <div class="proj-card2 flip-front-face">
-      <div class="proj-num2">03 · React App</div>
-      <h3>AI Chef — Recipe Generator</h3>
-      <p>React app that generates recipes from available ingredients using an AI API. Component architecture with hooks, state management, and a serverless backend on Netlify Functions.</p>
-      <div class="proj-tags">
-        <span class="ptag">React</span>
-        <span class="ptag">Vite</span>
-        <span class="ptag">AI API</span>
-        <span class="ptag g">Hooks</span>
-        <span class="ptag g">Netlify Functions</span>
-        <span class="ptag g">Serverless</span>
-      </div>
-      <div class="flip-hint">flip for details ↷</div>
-    </div>
-    <!-- BACK -->
-    <div class="proj-card2 flip-back-face">
-      <div class="proj-num2">03 · React App</div>
-      <h3>What I built</h3>
-      <ul class="flip-bullets">
-        <li>Component architecture — Header + Main split into reusable React components</li>
-        <li>useState hooks managing ingredient list, recipe output, and loading/error states</li>
-        <li>Serverless backend via Netlify Functions — API key never exposed to client</li>
-        <li>React Markdown rendering AI-generated recipe output with custom CSS</li>
-      </ul>
-      <div class="flip-back-btns">
-        <a href="https://ai-chef-react-by-apra.netlify.app/" target="_blank" rel="noopener" class="flip-btn-cs">↗ Live site</a>
-        <a href="https://github.com/ap23hp/AI-Chef-React" target="_blank" rel="noopener" class="flip-btn-live">GitHub →</a>
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- AI CHEF FLIP CARD -->
+        <div class="proj-card2-wrap reveal d2">
+          <div class="proj-card2-flip" id="flipCard2">
+            <!-- FRONT -->
+            <div class="proj-card2 flip-front-face">
+              <div class="proj-num2">03 · React App</div>
+              <h3>AI Chef — Recipe Generator</h3>
+              <p>React app that generates recipes from available ingredients using an AI API. Component architecture with hooks, state management, and a serverless backend on Netlify Functions.</p>
+              <div class="proj-tags">
+                <span class="ptag">React</span>
+                <span class="ptag">Vite</span>
+                <span class="ptag">AI API</span>
+                <span class="ptag g">Hooks</span>
+                <span class="ptag g">Netlify Functions</span>
+                <span class="ptag g">Serverless</span>
+              </div>
+              <div class="flip-hint">flip for details ↷</div>
+            </div>
+            <!-- BACK -->
+            <div class="proj-card2 flip-back-face">
+              <div class="proj-num2">03 · React App</div>
+              <h3>What I built</h3>
+              <ul class="flip-bullets">
+                <li>Component architecture — Header + Main split into reusable React components</li>
+                <li>useState hooks managing ingredient list, recipe output, and loading/error states</li>
+                <li>Serverless backend via Netlify Functions — API key never exposed to client</li>
+                <li>React Markdown rendering AI-generated recipe output with custom CSS</li>
+              </ul>
+              <div class="flip-back-btns">
+                <a href="https://ai-chef-react-by-apra.netlify.app/" target="_blank" rel="noopener" class="flip-btn-cs">↗ Live site</a>
+                <a href="https://github.com/ap23hp/AI-Chef-React" target="_blank" rel="noopener" class="flip-btn-live">GitHub →</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <a href="https://ap23hp.github.io/Weather-App/" target="_blank" rel="noopener" class="proj-card2 reveal d1">
           <div class="proj-num2">04 · JavaScript</div>
@@ -1119,76 +1109,43 @@
       });
     });
 
-    const flipCard = document.querySelector('.proj-card2-flip');
-    if (flipCard) {
-      const front = flipCard.querySelector('.flip-front-face');
-      const back  = flipCard.querySelector('.flip-back-face');
+    function makeFlipCard(id) {
+      const card = document.querySelector(id);
+      if (!card) return;
+      const front = card.querySelector('.flip-front-face');
+      const back  = card.querySelector('.flip-back-face');
 
       function syncHeight() {
-        const isFlipped = flipCard.classList.contains('is-flipped');
-        back.style.position  = 'static';
+        back.style.position = 'static';
         back.style.transform = 'none';
         back.style.visibility = 'hidden';
         const bH = back.offsetHeight;
-        back.style.position  = '';
+        back.style.position = '';
         back.style.transform = '';
         back.style.visibility = '';
 
-        front.style.position  = 'static';
+        front.style.position = 'static';
         front.style.transform = 'none';
         front.style.visibility = 'hidden';
         const fH = front.offsetHeight;
-        front.style.position  = '';
+        front.style.position = '';
         front.style.transform = '';
         front.style.visibility = '';
 
-        const h = isFlipped ? bH : fH;
-        flipCard.style.height = h + 'px';
-        flipCard.parentElement.style.minHeight = h + 'px';
+        card.style.height = (card.classList.contains('is-flipped') ? bH : fH) + 'px';
+        card.parentElement.style.minHeight = card.style.height;
       }
 
       syncHeight();
-
-      flipCard.addEventListener('click', function(e) {
+      card.addEventListener('click', function(e) {
         if (e.target.closest('a')) return;
         this.classList.toggle('is-flipped');
         syncHeight();
       });
     }
-    const flipCard2 = document.querySelector('#flipCard2');
-if (flipCard2) {
-  const front = flipCard2.querySelector('.flip-front-face');
-  const back  = flipCard2.querySelector('.flip-back-face');
 
-  function syncHeight2() {
-    back.style.position = 'static';
-    back.style.transform = 'none';
-    back.style.visibility = 'hidden';
-    const bH = back.offsetHeight;
-    back.style.position = '';
-    back.style.transform = '';
-    back.style.visibility = '';
-
-    front.style.position = 'static';
-    front.style.transform = 'none';
-    front.style.visibility = 'hidden';
-    const fH = front.offsetHeight;
-    front.style.position = '';
-    front.style.transform = '';
-    front.style.visibility = '';
-
-    const h = flipCard2.classList.contains('is-flipped') ? bH : fH;
-    flipCard2.style.height = h + 'px';
-    flipCard2.parentElement.style.minHeight = h + 'px';
-  }
-
-  syncHeight2();
-  flipCard2.addEventListener('click', function(e) {
-    if (e.target.closest('a')) return;
-    this.classList.toggle('is-flipped');
-    syncHeight2();
-  });
-}
+    makeFlipCard('#flipCard1');
+    makeFlipCard('#flipCard2');
   </script>
 </body>
 
