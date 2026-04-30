@@ -1241,6 +1241,178 @@ font-size: 16px;}
 .contact-band h2 { font-size: 26px; }
 .btn-orange, .btn-light { width: 100%; justify-content: center; }
     }
+    <style id="gtg-flip-styles-COPY-INTO-YOUR-STYLE-TAG">
+ 
+/* GTG FLIP CARD */
+.proj-card2-wrap {
+  /* same sizing as your existing .proj-card2 */
+}
+ 
+.proj-card2-flip {
+  position: relative;
+  height: 100%;
+  min-height: 320px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+ 
+.proj-card2-flip .flip-front-face,
+.proj-card2-flip .flip-back-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+ 
+.proj-card2-flip .flip-front-face {
+  transform: rotateY(0deg);
+}
+ 
+.proj-card2-flip .flip-back-face {
+  transform: rotateY(180deg);
+  background: var(--dark);
+  border-color: rgba(208, 90, 20, 0.35);
+}
+ 
+/* flipped state */
+.proj-card2-flip.is-flipped .flip-front-face {
+  transform: rotateY(-180deg);
+}
+ 
+.proj-card2-flip.is-flipped .flip-back-face {
+  transform: rotateY(0deg);
+}
+ 
+/* front — hint text */
+.flip-hint {
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: 11px;
+  color: var(--orange);
+  font-weight: 500;
+  opacity: 0.7;
+}
+ 
+/* back — overrides for dark bg */
+.flip-back-face h3 {
+  color: var(--bg) !important;
+}
+ 
+.flip-back-face .proj-num2 {
+  color: rgba(208, 90, 20, 0.7);
+}
+ 
+.flip-back-face .proj-num2::after {
+  background: rgba(208, 90, 20, 0.2);
+}
+ 
+/* back bullets */
+.flip-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+ 
+.flip-bullets li {
+  font-size: 13px;
+  color: rgba(250, 248, 244, 0.65);
+  line-height: 1.55;
+  padding-left: 18px;
+  position: relative;
+  font-weight: 400;
+}
+ 
+.flip-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-size: 11px;
+  top: 2px;
+}
+ 
+/* back buttons */
+.flip-back-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+ 
+.flip-btn-cs {
+  display: inline-flex;
+  align-items: center;
+  background: var(--orange);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(208, 90, 20, 0.35);
+}
+ 
+.flip-btn-cs:hover {
+  background: #b84d10;
+  transform: translateY(-1px);
+}
+ 
+.flip-btn-live {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(250, 248, 244, 0.08);
+  color: rgba(250, 248, 244, 0.75);
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(250, 248, 244, 0.12);
+  transition: all 0.2s;
+}
+ 
+.flip-btn-live:hover {
+  background: rgba(250, 248, 244, 0.14);
+  color: var(--bg);
+}
+ 
+/* mobile — disable flip, show front only */
+@media (max-width: 700px) {
+  .proj-card2-flip {
+    perspective: none;
+    min-height: unset;
+  }
+ 
+  .proj-card2-flip .flip-front-face,
+  .proj-card2-flip .flip-back-face {
+    position: static;
+    transform: none !important;
+    backface-visibility: visible;
+    transition: none;
+  }
+ 
+  .proj-card2-flip .flip-back-face {
+    display: none;
+  }
+ 
+  .flip-hint {
+    display: none;
+  }
+ 
+  .proj-card2-wrap {
+    /* add a direct link on mobile */
+  }
+}
+ 
+</style>
   </style>
 </head>
 
