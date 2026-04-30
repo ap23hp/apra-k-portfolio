@@ -1854,6 +1854,20 @@ document.querySelectorAll('.nav-links a').forEach(a => {
         if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+    <script id="gtg-flip-js-COPY-INTO-YOUR-SCRIPT-TAG">
+ 
+// GTG flip card toggle
+const flipCard = document.querySelector('.proj-card2-flip');
+if (flipCard) {
+  flipCard.addEventListener('click', function(e) {
+    // don't flip when clicking links inside
+    if (e.target.closest('a')) return;
+    this.classList.toggle('is-flipped');
+  });
+}
+ 
+</script>
+ 
   </script>
 </body>
 
