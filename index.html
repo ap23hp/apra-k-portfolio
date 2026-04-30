@@ -1155,6 +1155,40 @@
         syncHeight();
       });
     }
+    const flipCard2 = document.querySelector('#flipCard2');
+if (flipCard2) {
+  const front = flipCard2.querySelector('.flip-front-face');
+  const back  = flipCard2.querySelector('.flip-back-face');
+
+  function syncHeight2() {
+    back.style.position = 'static';
+    back.style.transform = 'none';
+    back.style.visibility = 'hidden';
+    const bH = back.offsetHeight;
+    back.style.position = '';
+    back.style.transform = '';
+    back.style.visibility = '';
+
+    front.style.position = 'static';
+    front.style.transform = 'none';
+    front.style.visibility = 'hidden';
+    const fH = front.offsetHeight;
+    front.style.position = '';
+    front.style.transform = '';
+    front.style.visibility = '';
+
+    const h = flipCard2.classList.contains('is-flipped') ? bH : fH;
+    flipCard2.style.height = h + 'px';
+    flipCard2.parentElement.style.minHeight = h + 'px';
+  }
+
+  syncHeight2();
+  flipCard2.addEventListener('click', function(e) {
+    if (e.target.closest('a')) return;
+    this.classList.toggle('is-flipped');
+    syncHeight2();
+  });
+}
   </script>
 </body>
 
