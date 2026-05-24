@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milani Electrical & Solar — Case Study · Apra Khanna</title>
+  <meta name="description" content="Case study: Multi-location WordPress platform for Milani Electrical & Solar. Geolocation, custom plugin, Web Vitals optimization. By Apra Khanna.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #d05a14;
+      --dark:   #1a1208;
+      --bg:     #ffffff;
+      --muted:  rgba(26,18,8,0.48);
+      --border: rgba(26,18,8,0.09);
+      --surface:#f7f4ef;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--dark);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 17px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      max-width: 760px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--orange); }
+    .nav-tag {
+      font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--orange);
+    }
+    .nav-live {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; color: var(--dark);
+      text-decoration: none; padding: 7px 14px; border-radius: 6px;
+      border: 1.5px solid var(--border); transition: all 0.2s;
+    }
+    .nav-live:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* LAYOUT */
+    .page { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+
+    /* HERO */
+    .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+    .hero-eye {
+      font-size: 12px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eye::after {
+      content: ''; display: block; flex: 1; max-width: 48px;
+      height: 1.5px; background: rgba(208,90,20,0.25);
+    }
+    .hero-title {
+      font-size: 56px; font-weight: 700; line-height: 1;
+      letter-spacing: -2px; color: var(--dark); margin-bottom: 20px;
+    }
+    .hero-title span { color: var(--orange); }
+    .hero-sub {
+      font-size: 18px; color: var(--muted); line-height: 1.7;
+      max-width: 560px; font-weight: 400; margin-bottom: 28px;
+    }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .pill {
+      font-size: 12px; font-weight: 600; padding: 7px 14px;
+      border-radius: 100px; background: rgba(208,90,20,0.07);
+      color: #b84d10; border: 1px solid rgba(208,90,20,0.16);
+    }
+    .pill.g {
+      background: var(--surface); color: var(--muted); border-color: var(--border);
+    }
+
+    /* META ROW */
+    .meta-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-cell {
+      padding: 28px 0; border-right: 1px solid var(--border); padding-right: 28px;
+    }
+    .meta-cell:last-child { border-right: none; padding-right: 0; }
+    .meta-cell + .meta-cell { padding-left: 28px; }
+    .meta-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 5px;
+    }
+    .meta-val { font-size: 16px; font-weight: 700; color: var(--dark); line-height: 1.4; }
+    .meta-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* SECTIONS */
+    .section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+    .section:last-of-type { border-bottom: none; }
+    .sec-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 20px;
+    }
+    .sec-title {
+      font-size: 32px; font-weight: 700; letter-spacing: -0.8px;
+      color: var(--dark); line-height: 1.2; margin-bottom: 20px;
+    }
+    .prose { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 640px; }
+    .prose + .prose { margin-top: 14px; }
+
+    .pull-quote {
+      margin: 32px 0; padding: 24px 28px;
+      border-left: 3px solid var(--orange);
+      background: var(--surface); border-radius: 0 8px 8px 0;
+    }
+    .pull-quote p {
+      font-size: 16px; font-style: italic;
+      color: var(--dark); line-height: 1.7; font-weight: 400;
+    }
+
+    /* PROBLEM GRID */
+    .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+    .prob-card { background: var(--dark); border-radius: 12px; padding: 28px; }
+    .prob-n {
+      font-size: 36px; font-weight: 700; color: rgba(208,90,20,0.22);
+      letter-spacing: -1px; line-height: 1; margin-bottom: 12px;
+    }
+    .prob-t { font-size: 16px; font-weight: 700; color: #faf8f4; margin-bottom: 8px; }
+    .prob-d { font-size: 13px; color: rgba(250,248,244,0.55); line-height: 1.65; }
+
+    /* SOLUTION LIST */
+    .sol-list { margin-top: 28px; display: flex; flex-direction: column; }
+    .sol-item {
+      display: grid; grid-template-columns: 56px 1fr;
+      gap: 20px; padding: 28px 0;
+      border-bottom: 1px solid var(--border); align-items: start;
+    }
+    .sol-item:last-child { border-bottom: none; }
+    .sol-n { font-size: 14px; font-weight: 700; color: var(--orange); padding-top: 2px; }
+    .sol-title { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .sol-desc { font-size: 14px; color: var(--muted); line-height: 1.75; }
+    .sol-code {
+      display: inline-block; font-family: 'Courier New', monospace; font-size: 12px;
+      background: var(--surface); padding: 3px 8px; border-radius: 4px;
+      color: var(--dark); margin-top: 8px;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      background: var(--dark); border-radius: 14px; overflow: hidden; margin-top: 28px;
+    }
+    .stat-cell {
+      padding: 36px 22px; border-right: 1px solid rgba(255,255,255,0.06); text-align: center;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-n { font-size: 44px; font-weight: 700; color: #f97316; letter-spacing: -1.5px; line-height: 1; margin-bottom: 8px; }
+    .stat-l { font-size: 12px; color: rgba(250,248,244,0.5); line-height: 1.5; }
+
+    /* LEARNINGS */
+    .learn-list { display: flex; flex-direction: column; margin-top: 24px; }
+    .learn-item {
+      padding: 24px 0; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 24px 1fr; gap: 18px; align-items: start;
+    }
+    .learn-item:last-child { border-bottom: none; }
+    .learn-dot {
+      width: 8px; height: 8px; background: var(--orange);
+      border-radius: 50%; margin-top: 8px; flex-shrink: 0;
+    }
+    .learn-title { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+    .learn-text { font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+    /* SCREENSHOTS */
+    .screenshots-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 32px;
+    }
+    .screenshot-item {
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--surface);
+    }
+    .screenshot-item img {
+      width: 100%; height: auto; display: block;
+      object-fit: cover;
+    }
+    .screenshot-label {
+      font-size: 13px; color: var(--muted); padding: 12px 14px;
+      text-align: center; border-top: 1px solid var(--border);
+    }
+
+    /* FOOTER CTA */
+    .footer-cta { padding: 56px 0 72px; text-align: center; }
+    .footer-cta p { font-size: 15px; color: var(--muted); margin-bottom: 24px; }
+    .footer-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-main {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: #fff; padding: 14px 28px;
+      border-radius: 8px; text-decoration: none; font-size: 15px;
+      font-weight: 600; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(208,90,20,0.25);
+    }
+    .btn-main:hover { background: #b84d10; transform: translateY(-2px); }
+    .btn-out {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--dark); padding: 14px 28px;
+      border-radius: 8px; text-decoration: none; font-size: 15px;
+      font-weight: 500; border: 1.5px solid var(--border); transition: all 0.2s;
+    }
+    .btn-out:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      .page { padding: 0 20px; }
+      .nav-inner { padding: 0 20px; }
+      .nav-tag { display: none; }
+      .hero { padding: 52px 0 40px; }
+      .hero-title { font-size: 40px; letter-spacing: -1px; }
+      .hero-sub { font-size: 16px; }
+      .meta-row { grid-template-columns: 1fr; }
+      .meta-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 18px 0 !important; }
+      .meta-cell:last-child { border-bottom: none; }
+      .prob-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .sol-item { grid-template-columns: 42px 1fr; gap: 14px; }
+      .sec-title { font-size: 26px; }
+      .prose { font-size: 15px; }
+      .screenshots-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-back">← Back to projects</a>
+    <span class="nav-tag">Case Study</span>
+    <a href="https://milanielectric.com/" target="_blank" rel="noopener" class="nav-live">↗ Live site</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <section class="hero reveal">
+    <div class="hero-eye">01 · WordPress Architecture</div>
+    <h1 class="hero-title">Milani <span>Electrical.</span></h1>
+    <p class="hero-sub">A multi-location electrical services platform serving 12+ Canadian cities with intelligent geolocation routing, custom WordPress plugins, and production-grade Web Vitals optimization.</p>
+    <div class="hero-pills">
+      <span class="pill">WordPress</span>
+      <span class="pill">PHP</span>
+      <span class="pill">Custom Plugins</span>
+      <span class="pill">Geolocation API</span>
+      <span class="pill">Web Vitals</span>
+      <span class="pill">Bricks Builder</span>
+      <span class="pill">Google APIs</span>
+      <span class="pill">WP Engine</span>
+    </div>
+  </section>
+
+  <div class="meta-row reveal">
+    <div class="meta-cell">
+      <div class="meta-label">Client</div>
+      <div class="meta-val">Milani Electric & Solar</div>
+      <div class="meta-sub">Sister company of Milani Plumbing, Canada</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Deliverable</div>
+      <div class="meta-val">Full WordPress platform</div>
+      <div class="meta-sub">Production website + custom plugin</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Timeline</div>
+      <div class="meta-val">Jan – May 2026</div>
+      <div class="meta-sub">4 months, live to production</div>
+    </div>
+  </div>
+
+  <section class="section reveal">
+    <div class="sec-label">The brief</div>
+    <h2 class="sec-title">One website.<br>Twelve cities. Infinite scale.</h2>
+    <p class="prose">Milani Electrical & Solar services 12+ Canadian cities. They needed a website that could serve location-specific content, show the right phone number, and automatically detect which city a visitor was in — all without creating 100+ manual pages.</p>
+    <p class="prose">Traditional approaches would mean duplicating content, managing separate WooCommerce products per city, and manually updating 144 pages whenever a service changed. They needed architecture that scales automatically.</p>
+    <div class="pull-quote">
+      <p>"We needed something that could handle 12 cities without us manually creating pages for each one. And it had to be fast."</p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="sec-label">The challenge</div>
+    <h2 class="sec-title">Seven problems<br>in one architecture.</h2>
+    <p class="prose">Standard WordPress can't handle multi-location routing, dynamic geolocation, or the complex URL structures needed for city-specific content without serious customization. Every approach had trade-offs between performance, maintainability, and scalability.</p>
+    <div class="prob-grid">
+      <div class="prob-card reveal d1">
+        <div class="prob-n">01</div>
+        <div class="prob-t">Multi-location URLs</div>
+        <div class="prob-d">Each city needs clean URLs: /vancouver/, /calgary/ev-chargers/. That's 80+ service pages without creating physical pages.</div>
+      </div>
+      <div class="prob-card reveal d2">
+        <div class="prob-n">02</div>
+        <div class="prob-t">Smart geolocation</div>
+        <div class="prob-d">Detect visitor's city via GPS → Google API → IP → postal code fallback. All in real time, without blocking page load.</div>
+      </div>
+      <div class="prob-card reveal d1">
+        <div class="prob-n">03</div>
+        <div class="prob-t">Custom content per city</div>
+        <div class="prob-d">Phone numbers, service availability, and messaging change by location. Manage it from one config file.</div>
+      </div>
+      <div class="prob-card reveal d2">
+        <div class="prob-n">04</div>
+        <div class="prob-t">SEO & structured data</div>
+        <div class="prob-d">Each city page needs LocalBusiness schema, BreadcrumbList, Service markup — all dynamic from one template.</div>
+      </div>
+      <div class="prob-card reveal d1">
+        <div class="prob-n">05</div>
+        <div class="prob-t">Lead tracking</div>
+        <div class="prob-d">Capture form submissions with city + service metadata. Track which cities convert best.</div>
+      </div>
+      <div class="prob-card reveal d2">
+        <div class="prob-n">06</div>
+        <div class="prob-t">Core Web Vitals</div>
+        <div class="prob-d">Multi-location sites often suffer from bloated third-party plugins. Goal: <2s LCP, <50ms FID, <0.1 CLS.</div>
+      </div>
+      <div class="prob-card reveal d1">
+        <div class="prob-n">07</div>
+        <div class="prob-t">Theme independence</div>
+        <div class="prob-d">All logic must live in the plugin. Changing themes shouldn't break anything.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="sec-label">The build</div>
+    <h2 class="sec-title">Custom WordPress plugin architecture.</h2>
+    <div class="sol-list">
+      <div class="sol-item reveal">
+        <div class="sol-n">01</div>
+        <div>
+          <div class="sol-title">Custom Post Type System</div>
+          <div class="sol-desc">Two CPTs: City and City Service. Coupled with intelligent URL rewrite rules that detect city + service combinations and map them to the correct post. No manual page creation.</div>
+          <span class="sol-code">register_post_type( 'city', [...] )</span>
+        </div>
+      </div>
+      <div class="sol-item reveal d1">
+        <div class="sol-n">02</div>
+        <div>
+          <div class="sol-title">Advanced rewrite rules</div>
+          <div class="sol-desc">Regex-based URL routing with automatic flushing when city data changes. Fallback logic prevents broken routes. Guards against canonical redirect issues.</div>
+          <span class="sol-code">add_rewrite_rule( '^(city)/([^/]+)/?$', 'index.php?post_type=city&name=$matches[1]' )</span>
+        </div>
+      </div>
+      <div class="sol-item reveal d2">
+        <div class="sol-n">03</div>
+        <div>
+          <div class="sol-title">3-tier geolocation engine</div>
+          <div class="sol-desc">Tier 1: Browser GPS → Google Geocoding. Tier 2: IP detection with transient caching (reduces API calls by 80%). Tier 3: Manual postal code search with Haversine distance formula.</div>
+        </div>
+      </div>
+      <div class="sol-item reveal d1">
+        <div class="sol-n">04</div>
+        <div>
+          <div class="sol-title">Dynamic shortcodes</div>
+          <div class="sol-desc">Four shortcodes personalize content: [milani_city], [milani_phone], [milani_service], [milani_map]. Works with any theme, fully portable.</div>
+          <span class="sol-code">do_shortcode( '[milani_phone]' )</span>
+        </div>
+      </div>
+      <div class="sol-item reveal d2">
+        <div class="sol-n">05</div>
+        <div>
+          <div class="sol-title">JSON-LD structured data</div>
+          <div class="sol-desc">Dynamic schema generation for LocalBusiness, Service, BreadcrumbList, PostalAddress. Detects Yoast and injects into its schema graph if active. Zero plugin conflicts.</div>
+        </div>
+      </div>
+      <div class="sol-item reveal d1">
+        <div class="sol-n">06</div>
+        <div>
+          <div class="sol-title">Custom lead capture system</div>
+          <div class="sol-desc">Database-backed form submissions with city + service metadata. Admin dashboard for lead review. Email notifications on new submissions. No third-party form plugin required.</div>
+        </div>
+      </div>
+      <div class="sol-item reveal d2">
+        <div class="sol-n">07</div>
+        <div>
+          <div class="sol-title">Google Tag Manager & Conversion API</div>
+          <div class="sol-desc">Event tracking for form submissions, phone clicks, and page views. Attribution clarity across all 12 cities. Connected to Google Ads for ROAS measurement.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="sec-label">Performance results</div>
+    <h2 class="sec-title">57% LCP improvement.<br>75% FID improvement.</h2>
+    <p class="prose">Before optimization, the site struggled with bloated plugins and unoptimized images. By building a lean custom plugin and applying Web Vitals best practices, we achieved industry-leading performance across all three Core Web Vitals metrics.</p>
+    <div class="stats-bar">
+      <div class="stat-cell">
+        <div class="stat-n">4.2s→1.8s</div>
+        <div class="stat-l">LCP improvement (57%)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">180→45ms</div>
+        <div class="stat-l">FID improvement (75%)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">0.15→0.04</div>
+        <div class="stat-l">CLS improvement (73%)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-n">6.8→2.1s</div>
+        <div class="stat-l">Page load time (69%)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="sec-label">Optimization techniques</div>
+    <h2 class="sec-title">What made it fast.</h2>
+    <div class="learn-list">
+      <div class="learn-item reveal">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Image optimization & lazy loading</div>
+          <div class="learn-text">Native loading="lazy" on all images. WebP format for modern browsers with JPEG fallback. Responsive srcsets for mobile/tablet/desktop reduce payload by 40%.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d1">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Deferred JavaScript loading</div>
+          <div class="learn-text">Non-critical JS loads asynchronously. Geolocation timeout set to 3 seconds — if IP detection is slow, page doesn't block. Critical CSS inlined in header.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d2">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Transient caching strategy</div>
+          <div class="learn-text">IP geolocation results cached by /8 subnet with 24-hour TTL. Coordinates cached in transients. Reduces external API calls by 80% after first visit.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d1">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Database optimization</div>
+          <div class="learn-text">Indexed city/service columns on custom form table. Prepared statements prevent N+1 queries. Minimal database footprint — the plugin adds only 4KB of overhead.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d2">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Zero plugin bloat</div>
+          <div class="learn-text">Every feature built custom instead of relying on third-party plugins. No dependencies = no version conflicts, no security vulnerabilities, no unexpected performance hits from plugin updates.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="sec-label">Key metrics</div>
+    <h2 class="sec-title">What was delivered.</h2>
+    <div class="learn-list">
+      <div class="learn-item reveal">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">4,000+ lines of production PHP</div>
+          <div class="learn-text">Custom WordPress plugin with hooks, filters, security best practices. Fully documented and maintainable. Zero external dependencies.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d1">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">80+ service pages, 1 template</div>
+          <div class="learn-text">12 cities × 7 services = 84 unique pages, all generated dynamically from a single template. Add a city in under 30 seconds.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d2">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Full responsive design</div>
+          <div class="learn-text">Desktop, tablet, mobile optimized. Tested across Chrome, Firefox, Safari, Edge. Touch-friendly on all devices.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d1">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Production-ready & live</div>
+          <div class="learn-text">Deployed to WP Engine. Live at milanielectric.com serving real customers. Monitoring set up for uptime and performance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="sec-label">What I learned</div>
+    <h2 class="sec-title">Key takeaways.</h2>
+    <div class="learn-list">
+      <div class="learn-item reveal">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Architecture matters more than plugins</div>
+          <div class="learn-text">The difference between a bloated site and a fast one is thoughtful architecture, not more plugins. Custom code built cleanly beats plugin stacks every time.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d1">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Geolocation is a feature, not a hack</div>
+          <div class="learn-text">With proper caching and fallbacks, geolocation can be fast and reliable. The 3-tier approach handles edge cases without sacrificing performance.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d2">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Web Vitals require holistic thinking</div>
+          <div class="learn-text">Hitting LCP targets means addressing images, JS, CSS, geolocation timeouts, and API performance simultaneously. No single fix solves the problem.</div>
+        </div>
+      </div>
+      <div class="learn-item reveal d1">
+        <div class="learn-dot"></div>
+        <div>
+          <div class="learn-title">Multi-location sites are complex, but solvable</div>
+          <div class="learn-text">The architecture pattern here (CPTs + rewrites + dynamic content) applies to any multi-location business. It's more scalable than Elementor or page builders.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="sec-label">Live website</div>
+    <h2 class="sec-title">Screenshots from production.</h2>
+    <p class="prose">The final website serving real customers across 12 Canadian cities with responsive design, optimized performance, and seamless geolocation routing.</p>
+    <div class="screenshots-grid">
+      <div class="screenshot-item reveal d1">
+        <img src="https://raw.githubusercontent.com/ap23hp/apra-k-portfolio/main/milani-screenshots/victoria-home.png" alt="Milani Electric Victoria homepage" loading="lazy">
+        <p class="screenshot-label">Homepage — Dynamic city detection</p>
+      </div>
+      <div class="screenshot-item reveal d2">
+        <img src="https://raw.githubusercontent.com/ap23hp/apra-k-portfolio/main/milani-screenshots/services.png" alt="Milani Electric services page" loading="lazy">
+        <p class="screenshot-label">Service pages — Geolocation routing</p>
+      </div>
+      <div class="screenshot-item reveal d1">
+        <img src="https://raw.githubusercontent.com/ap23hp/apra-k-portfolio/main/milani-screenshots/contact.png" alt="Milani Electric contact page" loading="lazy">
+        <p class="screenshot-label">Contact form — Lead capture</p>
+      </div>
+      <div class="screenshot-item reveal d2">
+        <img src="https://raw.githubusercontent.com/ap23hp/apra-k-portfolio/main/milani-screenshots/mobile.png" alt="Milani Electric mobile responsive" loading="lazy">
+        <p class="screenshot-label">Mobile responsive — All devices</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-cta reveal">
+    <p>Looking for WordPress architecture expertise?</p>
+    <div class="footer-btns">
+      <a href="mailto:apra.khanna2304@gmail.com" class="btn-main">Get in touch →</a>
+      <a href="../index.html#projects" class="btn-out">← All projects</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
