@@ -742,7 +742,7 @@
       /* PROJECTS */
       .proj-grid2 {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 16px;
       }
 
@@ -760,14 +760,7 @@
         overflow: hidden;
       }
 
-      .proj-card2.span2 {
-        grid-column: span 2;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 24px;
-        align-items: start;
-      }
-
+ 
       .proj-card2:hover {
         border-color: rgba(208, 90, 20, 0.25);
         transform: translateY(-4px);
@@ -861,7 +854,7 @@
         position: relative;
         width: 100%;
         height: 100%;
-        min-height: 320px;
+        min-height: 390px;
         perspective: 1000px;
         cursor: pointer;
         transform-style: preserve-3d;
@@ -886,9 +879,7 @@
         transform: rotateY(0deg);
         justify-content: flex-start;
       }
-      .proj-card2-wrap {
-        min-height: unset !important;
-      }
+    
 
       .proj-card2-flip .flip-back-face {
         transform: rotateY(180deg);
@@ -1350,9 +1341,7 @@
         .tl-left {
           padding-left: 20px;
         }
-        .proj-grid2 {
-          grid-template-columns: 1fr;
-        }
+     
         .proj-card2.span2 {
           grid-column: span 1;
           display: flex;
@@ -1399,16 +1388,16 @@
           display: flex;
           flex-direction: column;
         }
-        .proj-card2-flip {
-          perspective: none;
-          min-height: unset;
-        }
+     
         .proj-card2-flip .flip-front-face,
         .proj-card2-flip .flip-back-face {
           position: static;
           transform: none !important;
           backface-visibility: visible;
           transition: none;
+        }
+        .proj-card2-flip{
+          min-height: 690px;
         }
         .proj-card2-flip .flip-back-face {
           display: none;
@@ -1417,15 +1406,7 @@
           display: none;
         }
       }
-      .proj-span2 {
-        grid-column: span 2;
-      }
 
-      @media (max-width: 700px) {
-        .proj-span2 {
-          grid-column: span 1;
-        }
-      }
       @media (max-width: 480px) {
         .hero-name {
           font-size: 42px;
@@ -1801,13 +1782,13 @@
         <div class="proj-grid2">
           <!-- MILANI FLIP CARD -->
           <div
-            class="proj-card2-wrap proj-span2 reveal"
-            style="min-height: unset"
+            class="proj-card2-wrap reveal"
+       
           >
             <div
               class="proj-card2-flip"
               id="flipCard0"
-              style="min-height: unset"
+         
             >
               <!-- FRONT -->
               <div class="proj-card2 flip-front-face">
