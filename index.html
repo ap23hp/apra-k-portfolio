@@ -1417,7 +1417,15 @@
           display: none;
         }
       }
+      .proj-span2 {
+        grid-column: span 2;
+      }
 
+      @media (max-width: 700px) {
+        .proj-span2 {
+          grid-column: span 1;
+        }
+      }
       @media (max-width: 480px) {
         .hero-name {
           font-size: 42px;
@@ -1519,8 +1527,8 @@
           <div class="hero-eyebrow">
             <div class="dot-live"></div>
             <span class="eyebrow-text"
-              >Full-Stack Developer · Seeking Opportunities in UK · Right to
-              work, no sponsorship needed
+              >· Seeking Opportunities in UK · Right to work, no sponsorship
+              needed
             </span>
           </div>
           <h1 class="hero-name">Apra<br /><span class="hl">Khanna.</span></h1>
@@ -1793,8 +1801,8 @@
         <div class="proj-grid2">
           <!-- MILANI FLIP CARD -->
           <div
-            class="proj-card2-wrap reveal"
-            style="grid-column: span 2; min-height: unset"
+            class="proj-card2-wrap proj-span2 reveal"
+            style="min-height: unset"
           >
             <div
               class="proj-card2-flip"
@@ -2100,8 +2108,7 @@
                 hand-holding required.
               </p>
               <div class="loc-badge">
-                London, UK · Right to work, no sponsorship needed · Open to
-                Hybrid & Remote
+                London, UK · Right to work, no sponsorship needed 
               </div>
             </div>
             <div class="about-extras">
@@ -2119,14 +2126,6 @@
                 <div class="axc-text">
                   From plugin architecture to frontend polish — I take a brief
                   and see it through to production without dropping the ball.
-                </div>
-              </div>
-              <div class="about-xcard">
-                <span class="axc-icon">🇬🇧</span>
-                <div class="axc-title">Settled in London</div>
-                <div class="axc-text">
-                  Right to work in the UK with no sponsorship needed — open to
-                  remote, hybrid or office-based roles
                 </div>
               </div>
             </div>
