@@ -1,1188 +1,2304 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apra Khanna — Full-Stack WordPress Developer</title>
+    <meta
+      name="description"
+      content="Full-Stack WordPress Developer with 3+ years experience. Custom plugins, React apps, geolocation systems. Available for UK roles."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --orange: #d05a14;
+        --orange-light: #f97316;
+        --dark: #1a1208;
+        --bg: #faf8f4;
+        --white: #ffffff;
+        --muted: rgba(7, 4, 1, 0.652);
+        --faint: rgba(26, 18, 8, 0.771);
+        --border: rgba(26, 18, 8, 0.08);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--dark);
+        font-family: "Bricolage Grotesque", sans-serif;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(200, 90, 20, 0.07) 1px,
+          transparent 1px
+        );
+        background-size: 28px 28px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .bg-blob {
+        position: fixed;
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(210, 100, 20, 0.07) 0%,
+          transparent 70%
+        );
+        top: -200px;
+        right: -200px;
+        pointer-events: none;
+        z-index: 0;
+        animation: blob-float 10s ease-in-out infinite alternate;
+      }
+
+      .bg-blob2 {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 180, 60, 0.06) 0%,
+          transparent 70%
+        );
+        bottom: -100px;
+        left: -100px;
+        pointer-events: none;
+        z-index: 0;
+        animation: blob-float 12s ease-in-out infinite alternate-reverse;
+      }
+
+      @keyframes blob-float {
+        from {
+          transform: translate(0, 0) scale(1);
+        }
+        to {
+          transform: translate(30px, 40px) scale(1.08);
+        }
+      }
+
+      .wrap {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 18px 0;
+        background: rgba(250, 248, 244, 0.9);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1.5px solid rgba(208, 90, 20, 0.1);
+        animation: nav-in 0.7s ease both;
+      }
+
+      @keyframes nav-in {
+        from {
+          opacity: 0;
+          transform: translateY(-16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 17px;
+        color: var(--dark);
+        letter-spacing: -0.3px;
+        text-decoration: none;
+      }
+
+      .nav-logo em {
+        font-style: normal;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--dark);
+        color: var(--bg);
+        width: 22px;
+        height: 22px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--orange);
+      }
+
+      .nav-cv {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--dark);
+        color: var(--bg) !important;
+        padding: 7px 16px;
+        border-radius: 6px;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        transition: all 0.2s;
+      }
+
+      .nav-cv:hover {
+        background: var(--orange) !important;
+        color: #fff !important;
+        transform: translateY(-1px);
+      }
+
+      /* HERO */
+      .hero {
+        padding: 88px 0 88px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .hero-left {
+        flex: 1;
+      }
+
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        animation: fade-up 0.6s ease 0.1s both;
+      }
+
+      .dot-live {
+        width: 8px;
+        height: 8px;
+        background: #22c55e;
+        border-radius: 50%;
+        animation: live-pulse 2s ease infinite;
+      }
+
+      @keyframes live-pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+        }
+      }
+
+      .eyebrow-text {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: 0.5px;
+      }
+
+      .hero-name {
+        font-size: 78px;
+        font-weight: 700;
+        line-height: 0.95;
+        letter-spacing: -3px;
+        color: var(--dark);
+        animation: fade-up 0.7s ease 0.2s both;
+      }
+
+      .hero-name .hl {
+        position: relative;
+        display: inline-block;
+        color: var(--orange);
+      }
+
+      .hero-name .hl::after {
+        content: "";
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        right: 0;
+        height: 7px;
+        background: rgba(208, 90, 20, 0.18);
+        border-radius: 2px;
+        z-index: -1;
+      }
+
+      .hero-role-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin: 22px 0 26px;
+        animation: fade-up 0.7s ease 0.3s both;
+      }
+
+      .role-pill {
+        background: var(--dark);
+        color: var(--bg);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 18px;
+        border-radius: 100px;
+      }
+
+      .role-pill b {
+        color: var(--orange-light);
+        font-weight: 600;
+      }
+
+      .role-loc {
+        font-size: 13px;
+        color: var(--faint);
+        font-weight: 600;
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-desc {
+        font-size: 16px;
+        line-height: 1.75;
+        color: var(--muted);
+        max-width: 460px;
+        font-weight: 400;
+        margin-bottom: 16px;
+        animation: fade-up 0.7s ease 0.35s both;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        animation: fade-up 0.7s ease 0.4s both;
+      }
+
+      .btn-main {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--orange);
+        color: #fff;
+        padding: 14px 26px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s;
+        box-shadow: 0 4px 20px rgba(208, 90, 20, 0.28);
+      }
+
+      .btn-main:hover {
+        background: #b84d10;
+        transform: translateY(-2px);
+      }
+
+      .btn-out {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: var(--dark);
+        padding: 14px 26px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1.5px solid rgba(26, 18, 8, 0.15);
+        transition: all 0.2s;
+      }
+
+      .btn-out:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        transform: translateY(-2px);
+      }
+
+      /* ORBIT */
+      .orbit-wrap {
+        flex-shrink: 0;
+        width: 420px;
+        height: 420px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fade-up 0.8s ease 0.5s both;
+      }
+
+      .orbit-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px dashed rgba(208, 90, 20, 0.2);
+      }
+      .ring1 {
+        width: 420px;
+        height: 420px;
+      }
+      .ring2 {
+        width: 300px;
+        height: 300px;
+      }
+
+      .orbit-outer {
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        animation: spin-slow 32s linear infinite;
+      }
+
+      .orbit-inner {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        animation: spin-slow 24s linear infinite reverse;
+      }
+
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .icon-node {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        font-family: "Bricolage Grotesque", sans-serif;
+      }
+
+      .in-orange {
+        background: var(--orange);
+        color: #fff;
+      }
+      .in-dark {
+        background: var(--dark);
+        color: var(--bg);
+      }
+      .in-light {
+        background: rgba(208, 90, 20, 0.1);
+        color: var(--orange);
+        border: 1.5px solid rgba(208, 90, 20, 0.3);
+      }
+
+      .c-outer {
+        animation: counter-outer 32s linear infinite;
+      }
+      .c-inner {
+        animation: counter-inner 24s linear infinite;
+      }
+
+      @keyframes counter-outer {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(-360deg);
+        }
+      }
+
+      @keyframes counter-inner {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(-360deg);
+        }
+      }
+
+      .photo-circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: #e8e0d8;
+        border: 4px solid rgba(208, 90, 20, 0.35);
+        z-index: 2;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .photo-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+      .photo-initials {
+        font-size: 52px;
+        font-weight: 700;
+        color: rgba(208, 90, 20, 0.4);
+      }
+
+      /* MARQUEE */
+      .marquee-strip {
+        background: var(--dark);
+        padding: 13px 0;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+      }
+
+      .marquee-track {
+        display: flex;
+        animation: marquee 72s linear infinite;
+        width: max-content;
+      }
+
+      .marquee-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 28px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(250, 248, 244, 0.78);
+        white-space: nowrap;
+      }
+
+      .mdot {
+        width: 4px;
+        height: 4px;
+        background: var(--orange);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* SECTION COMMON */
+      .section {
+        padding: 40px 0;
+      }
+
+      .sec-eye {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 8px;
+      }
+
+      .sec-title {
+        font-size: 40px;
+        font-weight: 700;
+        letter-spacing: -1.5px;
+        color: var(--dark);
+        line-height: 1.1;
+      }
+
+      .rule {
+        height: 1.5px;
+        background: rgba(26, 18, 8, 0.07);
+        margin: 0;
+      }
+
+      /* SKILLS */
+      .skills-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .skill-row {
+        display: grid;
+        grid-template-columns: 80px 1fr 1fr;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+        border-bottom: 1px solid rgba(26, 18, 8, 0.07);
+        transition: all 0.2s;
+        position: relative;
+      }
+
+      .skill-row:last-child {
+        border-bottom: none;
+      }
+
+      .skill-row:hover .skill-big-num {
+        color: var(--orange);
+      }
+
+      .skill-row:hover {
+        background: rgba(208, 90, 20, 0.02);
+        margin: 0 -20px;
+        padding: 28px 20px;
+        border-radius: 8px;
+      }
+
+      .skill-big-num {
+        font-size: 52px;
+        font-weight: 700;
+        color: rgba(26, 18, 8, 0.07);
+        letter-spacing: -2px;
+        line-height: 1;
+        transition: color 0.2s;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .skill-name {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--dark);
+        letter-spacing: -0.5px;
+      }
+      .skill-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* EXPERIENCE */
+      .exp-section-wrap {
+        background: var(--dark);
+        position: relative;
+        z-index: 1;
+      }
+      .exp-section-wrap .sec-title {
+        color: var(--bg);
+      }
+      .exp-section-wrap .sec-eye {
+        color: rgba(208, 90, 20, 0.8);
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(250, 248, 244, 0.1);
+      }
+
+      .tl-item {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 40px;
+        padding: 36px 0;
+        border-bottom: 1px solid rgba(250, 248, 244, 0.06);
+        position: relative;
+      }
+
+      .tl-item:last-child {
+        border-bottom: none;
+      }
+
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 44px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--orange);
+        border: 2px solid var(--dark);
+      }
+
+      .tl-left {
+        padding-left: 24px;
+      }
+
+      .tl-period {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--orange);
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+      }
+
+      .tl-company {
+        font-size: 14px;
+        color: rgba(250, 248, 244, 0.8);
+        line-height: 1.5;
+        font-weight: 400;
+      }
+
+      .tl-role {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--bg);
+        letter-spacing: -0.4px;
+        margin-bottom: 14px;
+      }
+
+      .tl-bullets {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .tl-bullets li {
+        font-size: 13px;
+        color: rgba(250, 248, 244, 0.78);
+        line-height: 1.65;
+        padding-left: 16px;
+        position: relative;
+        font-weight: 400;
+      }
+
+      .tl-bullets li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--orange);
+        font-size: 11px;
+        top: 2px;
+      }
+
+      /* PROJECTS */
+      .proj-grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .proj-card2 {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 16px;
+        padding: 28px 26px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.25s;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .proj-card2.span2 {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .proj-card2:hover {
+        border-color: rgba(208, 90, 20, 0.25);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(208, 90, 20, 0.12);
+      }
+
+      .proj-card2:hover .arr-box {
+        background: var(--orange);
+        transform: rotate(-8deg);
+      }
+
+      .proj-num2 {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .proj-num2::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(208, 90, 20, 0.18);
+        max-width: 40px;
+      }
+
+      .proj-card2 h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--dark);
+        letter-spacing: -0.4px;
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+
+      .proj-card2 p {
+        font-size: 18px;
+        color: #3a3028;
+        line-height: 1.65;
+        flex: 1;
+      }
+
+      .proj-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 14px;
+      }
+
+      .ptag {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 100px;
+        background: rgba(208, 90, 20, 0.08);
+        color: #b84d10;
+        border: 1px solid rgba(208, 90, 20, 0.15);
+      }
+
+      .ptag.g {
+        background: rgba(26, 18, 8, 0.04);
+        color: var(--muted);
+        border-color: rgba(26, 18, 8, 0.08);
+      }
+
+      .arr-box {
+        width: 40px;
+        height: 40px;
+        background: var(--dark);
+        color: var(--bg);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+        transition: all 0.2s;
+      }
+
+      /* FLIP CARD */
+      .proj-card2-wrap {
+        min-height: 320px;
+      }
+
+      .proj-card2-flip {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        perspective: 1000px;
+        cursor: pointer;
+        transform-style: preserve-3d;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apra Khanna — Full-Stack WordPress Developer</title>
-  <meta name="description"
-    content="Full-Stack WordPress Developer with 3+ years experience. Custom plugins, React apps, geolocation systems. Available for UK roles.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&display=swap"
-    rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --orange: #d05a14;
-      --orange-light: #f97316;
-      --dark: #1a1208;
-      --bg: #faf8f4;
-      --white: #ffffff;
-      --muted: rgba(7, 4, 1, 0.652);
-      --faint: rgba(26, 18, 8, 0.771);
-      --border: rgba(26, 18, 8, 0.08);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--dark);
-      font-family: 'Bricolage Grotesque', sans-serif;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(200, 90, 20, 0.07) 1px, transparent 1px);
-      background-size: 28px 28px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .bg-blob {
-      position: fixed;
-      width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(210, 100, 20, 0.07) 0%, transparent 70%);
-      top: -200px; right: -200px;
-      pointer-events: none; z-index: 0;
-      animation: blob-float 10s ease-in-out infinite alternate;
-    }
-
-    .bg-blob2 {
-      position: fixed;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 180, 60, 0.06) 0%, transparent 70%);
-      bottom: -100px; left: -100px;
-      pointer-events: none; z-index: 0;
-      animation: blob-float 12s ease-in-out infinite alternate-reverse;
-    }
-
-    @keyframes blob-float {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(30px, 40px) scale(1.08); }
-    }
-
-    .wrap {
-      position: relative; z-index: 1;
-      max-width: 900px; margin: 0 auto; padding: 0 40px;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 18px 0;
-      background: rgba(250, 248, 244, 0.9);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1.5px solid rgba(208, 90, 20, 0.1);
-      animation: nav-in 0.7s ease both;
-    }
-
-    @keyframes nav-in {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .nav-inner {
-      max-width: 900px; margin: 0 auto; padding: 0 40px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .nav-logo {
-      font-weight: 700; font-size: 17px; color: var(--dark);
-      letter-spacing: -0.3px; text-decoration: none;
-    }
-
-    .nav-logo em {
-      font-style: normal;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--dark); color: var(--bg);
-      width: 22px; height: 22px; border-radius: 4px;
-      font-size: 12px; font-weight: 700; margin-left: 5px; vertical-align: middle;
-    }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 16px; list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 13px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--orange); }
-
-    .nav-cv {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--dark); color: var(--bg) !important;
-      padding: 7px 16px; border-radius: 6px;
-      font-size: 12px !important; font-weight: 600 !important; transition: all 0.2s;
-    }
-
-    .nav-cv:hover {
-      background: var(--orange) !important; color: #fff !important; transform: translateY(-1px);
-    }
-
-    /* HERO */
-    .hero {
-      padding: 88px 0 88px;
-      display: flex; align-items: center; justify-content: space-between; gap: 40px;
-    }
-
-    .hero-left { flex: 1; }
-
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      margin-bottom: 20px; animation: fade-up 0.6s ease 0.1s both;
-    }
-
-    .dot-live {
-      width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
-      animation: live-pulse 2s ease infinite;
-    }
-
-    @keyframes live-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
-      50%       { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
-    }
-
-    .eyebrow-text { font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0.5px; }
-
-    .hero-name {
-      font-size: 78px; font-weight: 700; line-height: 0.95;
-      letter-spacing: -3px; color: var(--dark); animation: fade-up 0.7s ease 0.2s both;
-    }
-
-    .hero-name .hl { position: relative; display: inline-block; color: var(--orange); }
-
-    .hero-name .hl::after {
-      content: ''; position: absolute; bottom: 8px; left: 0; right: 0;
-      height: 7px; background: rgba(208, 90, 20, 0.18); border-radius: 2px; z-index: -1;
-    }
-
-    .hero-role-row {
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-      margin: 22px 0 26px; animation: fade-up 0.7s ease 0.3s both;
-    }
-
-    .role-pill {
-      background: var(--dark); color: var(--bg);
-      font-size: 14px; font-weight: 500; padding: 8px 18px; border-radius: 100px;
-    }
-
-    .role-pill b { color: var(--orange-light); font-weight: 600; }
-
-    .role-loc { font-size: 13px; color: var(--faint); font-weight: 600; }
-
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-desc {
-      font-size: 16px; line-height: 1.75; color: var(--muted);
-      max-width: 460px; font-weight: 400; margin-bottom: 16px;
-      animation: fade-up 0.7s ease 0.35s both;
-    }
-
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; animation: fade-up 0.7s ease 0.4s both; }
-
-    .btn-main {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--orange); color: #fff; padding: 14px 26px;
-      border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600;
-      transition: all 0.2s; box-shadow: 0 4px 20px rgba(208, 90, 20, 0.28);
-    }
-
-    .btn-main:hover { background: #b84d10; transform: translateY(-2px); }
-
-    .btn-out {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: var(--dark); padding: 14px 26px;
-      border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500;
-      border: 1.5px solid rgba(26, 18, 8, 0.15); transition: all 0.2s;
-    }
-
-    .btn-out:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
-
-    /* ORBIT */
-    .orbit-wrap {
-      flex-shrink: 0; width: 420px; height: 420px; position: relative;
-      display: flex; align-items: center; justify-content: center;
-      animation: fade-up 0.8s ease 0.5s both;
-    }
-
-    .orbit-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(208, 90, 20, 0.2); }
-    .ring1 { width: 420px; height: 420px; }
-    .ring2 { width: 300px; height: 300px; }
-
-    .orbit-outer {
-      position: absolute; width: 420px; height: 420px;
-      animation: spin-slow 32s linear infinite;
-    }
-
-    .orbit-inner {
-      position: absolute; width: 300px; height: 300px;
-      animation: spin-slow 24s linear infinite reverse;
-    }
-
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    .icon-node {
-      width: 52px; height: 52px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; position: absolute;
-      transform: translate(-50%, -50%);
-      font-family: 'Bricolage Grotesque', sans-serif;
-    }
-
-    .in-orange { background: var(--orange); color: #fff; }
-    .in-dark   { background: var(--dark); color: var(--bg); }
-    .in-light  { background: rgba(208, 90, 20, 0.1); color: var(--orange); border: 1.5px solid rgba(208, 90, 20, 0.3); }
-
-    .c-outer { animation: counter-outer 32s linear infinite; }
-    .c-inner { animation: counter-inner 24s linear infinite; }
-
-    @keyframes counter-outer {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(-360deg); }
-    }
-
-    @keyframes counter-inner {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(-360deg); }
-    }
-
-    .photo-circle {
-      width: 200px; height: 200px; border-radius: 50%;
-      background: #e8e0d8; border: 4px solid rgba(208, 90, 20, 0.35);
-      z-index: 2; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .photo-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .photo-initials { font-size: 52px; font-weight: 700; color: rgba(208, 90, 20, 0.4); }
-
-    /* MARQUEE */
-    .marquee-strip {
-      background: var(--dark); padding: 13px 0; overflow: hidden;
-      position: relative; z-index: 1;
-    }
-
-    .marquee-track { display: flex; animation: marquee 72s linear infinite; width: max-content; }
-
-    .marquee-item {
-      display: flex; align-items: center; gap: 10px; padding: 0 28px;
-      font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(250, 248, 244, 0.78); white-space: nowrap;
-    }
-
-    .mdot { width: 4px; height: 4px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* SECTION COMMON */
-    .section { padding: 40px 0; }
-
-    .sec-eye {
-      font-size: 14px; font-weight: 600; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--orange); margin-bottom: 8px;
-    }
-
-    .sec-title {
-      font-size: 40px; font-weight: 700; letter-spacing: -1.5px;
-      color: var(--dark); line-height: 1.1; margin-bottom: 40px;
-    }
-
-    .rule { height: 1.5px; background: rgba(26, 18, 8, 0.07); margin: 0; }
-
-    /* SKILLS */
-    .skills-list { display: flex; flex-direction: column; gap: 0; }
-
-    .skill-row {
-      display: grid; grid-template-columns: 80px 1fr 1fr;
-      align-items: center; gap: 24px; padding: 28px 0;
-      border-bottom: 1px solid rgba(26, 18, 8, 0.07);
-      transition: all 0.2s; position: relative;
-    }
-
-    .skill-row:last-child { border-bottom: none; }
-
-    .skill-row:hover .skill-big-num { color: var(--orange); }
-
-    .skill-row:hover {
-      background: rgba(208, 90, 20, 0.02);
-      margin: 0 -20px; padding: 28px 20px; border-radius: 8px;
-    }
-
-    .skill-big-num {
-      font-size: 52px; font-weight: 700; color: rgba(26, 18, 8, 0.07);
-      letter-spacing: -2px; line-height: 1; transition: color 0.2s;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .skill-name { font-size: 22px; font-weight: 700; color: var(--dark); letter-spacing: -0.5px; }
-    .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    /* EXPERIENCE */
-    .exp-section-wrap { background: var(--dark); position: relative; z-index: 1; }
-    .exp-section-wrap .sec-title { color: var(--bg); }
-    .exp-section-wrap .sec-eye { color: rgba(208, 90, 20, 0.8); }
-
-    .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
-
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 1px; background: rgba(250, 248, 244, 0.1);
-    }
-
-    .tl-item {
-      display: grid; grid-template-columns: 180px 1fr; gap: 40px;
-      padding: 36px 0; border-bottom: 1px solid rgba(250, 248, 244, 0.06);
-      position: relative;
-    }
-
-    .tl-item:last-child { border-bottom: none; }
-
-    .tl-item::before {
-      content: ''; position: absolute; left: -4px; top: 44px;
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--orange); border: 2px solid var(--dark);
-    }
-
-    .tl-left { padding-left: 24px; }
-
-    .tl-period { font-size: 12px; font-weight: 500; color: var(--orange); letter-spacing: 0.5px; margin-bottom: 6px; }
-
-    .tl-company { font-size: 14px; color: rgba(250, 248, 244, 0.8); line-height: 1.5; font-weight: 400; }
-
-    .tl-role {
-      font-size: 20px; font-weight: 700; color: var(--bg);
-      letter-spacing: -0.4px; margin-bottom: 14px;
-    }
-
-    .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-
-    .tl-bullets li {
-      font-size: 13px; color: rgba(250, 248, 244, 0.78); line-height: 1.65;
-      padding-left: 16px; position: relative; font-weight: 400;
-    }
-
-    .tl-bullets li::before {
-      content: '→'; position: absolute; left: 0;
-      color: var(--orange); font-size: 11px; top: 2px;
-    }
-
-    /* PROJECTS */
-    .proj-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .proj-card2 {
-      background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 16px; padding: 28px 26px;
-      text-decoration: none; color: inherit; transition: all 0.25s;
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-    }
-
-    .proj-card2.span2 {
-      grid-column: span 2; display: grid;
-      grid-template-columns: 1fr auto; gap: 24px; align-items: start;
-    }
-
-    .proj-card2:hover {
-      border-color: rgba(208, 90, 20, 0.25);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(208, 90, 20, 0.12);
-    }
-
-    .proj-card2:hover .arr-box { background: var(--orange); transform: rotate(-8deg); }
-
-    .proj-num2 {
-      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 10px;
-      display: flex; align-items: center; gap: 8px;
-    }
-
-    .proj-num2::after {
-      content: ''; flex: 1; height: 1px;
-      background: rgba(208, 90, 20, 0.18); max-width: 40px;
-    }
-
-    .proj-card2 h3 {
-      font-size: 20px; font-weight: 700; color: var(--dark);
-      letter-spacing: -0.4px; margin-bottom: 10px; line-height: 1.2;
-    }
-
-    .proj-card2 p { font-size: 18px; color: #3a3028; line-height: 1.65; flex: 1; }
-
-    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-
-    .ptag {
-      font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px;
-      background: rgba(208, 90, 20, 0.08); color: #b84d10;
-      border: 1px solid rgba(208, 90, 20, 0.15);
-    }
-
-    .ptag.g {
-      background: rgba(26, 18, 8, 0.04); color: var(--muted);
-      border-color: rgba(26, 18, 8, 0.08);
-    }
-
-    .arr-box {
-      width: 40px; height: 40px; background: var(--dark); color: var(--bg);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0; transition: all 0.2s;
-    }
-
-    /* FLIP CARD */
-    .proj-card2-wrap { min-height: 320px; }
-
-    .proj-card2-flip {
-      position: relative; width: 100%; height: 100%; min-height: 320px;
-      perspective: 1000px; cursor: pointer; transform-style: preserve-3d;
-    }
-
-    .proj-card2-flip .flip-front-face,
-    .proj-card2-flip .flip-back-face {
-      position: absolute; top: 0; left: 0; right: 0; min-height: 100%;
-      backface-visibility: hidden; -webkit-backface-visibility: hidden;
-      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
-      display: flex; flex-direction: column; padding-bottom: 28px;
-    }
-
-    .proj-card2-flip .flip-front-face { transform: rotateY(0deg); justify-content: flex-start; }
-    .proj-card2-wrap { min-height: unset !important; }
-
-    .proj-card2-flip .flip-back-face {
-      transform: rotateY(180deg);
-      background: var(--dark);
-      border-color: rgba(208, 90, 20, 0.35);
-    }
-
-    .proj-card2-flip.is-flipped .flip-front-face { transform: rotateY(-180deg); }
-    .proj-card2-flip.is-flipped .flip-back-face  { transform: rotateY(0deg); }
-
-    .flip-hint {
-      margin-top: auto; padding-top: 12px;
-      font-size: 11px; color: var(--orange); font-weight: 500; opacity: 0.7;
-    }
-
-    .flip-back-face h3          { color: var(--bg) !important; }
-    .flip-back-face .proj-num2  { color: rgba(208, 90, 20, 0.7); }
-    .flip-back-face .proj-num2::after { background: rgba(208, 90, 20, 0.2); }
-
-    .flip-bullets {
-      list-style: none; padding: 0; margin: 0 0 auto;
-      display: flex; flex-direction: column; gap: 10px;
-    }
-
-    .flip-bullets li {
-      font-size: 13px; color: rgba(250, 248, 244, 0.65);
-      line-height: 1.55; padding-left: 18px; position: relative; font-weight: 400;
-    }
-
-    .flip-bullets li::before {
-      content: '→'; position: absolute; left: 0;
-      color: var(--orange); font-size: 11px; top: 2px;
-    }
-
-    .flip-back-btns { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-
-    .flip-btn-cs {
-      display: inline-flex; align-items: center;
-      background: var(--orange); color: #fff; padding: 10px 18px;
-      border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600;
-      transition: all 0.2s; box-shadow: 0 4px 16px rgba(208, 90, 20, 0.35);
-    }
-
-    .flip-btn-cs:hover { background: #b84d10; transform: translateY(-1px); }
-
-    .flip-btn-live {
-      display: inline-flex; align-items: center;
-      background: rgba(250, 248, 244, 0.08); color: rgba(250, 248, 244, 0.75);
-      padding: 10px 18px; border-radius: 8px; text-decoration: none;
-      font-size: 13px; font-weight: 500;
-      border: 1px solid rgba(250, 248, 244, 0.12); transition: all 0.2s;
-    }
-
-    .flip-btn-live:hover { background: rgba(250, 248, 244, 0.14); color: var(--bg); }
-
-    /* ABOUT */
-    .about-new { display: flex; flex-direction: column; gap: 20px; }
-
-    .about-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-
-    .asc {
-      background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 16px; padding: 28px 24px; transition: all 0.25s;
-    }
-
-    .asc:hover {
-      border-color: rgba(208, 90, 20, 0.2); transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(208, 90, 20, 0.08);
-    }
-
-    .asc-num { font-size: 48px; font-weight: 700; color: var(--orange); letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
-    .asc-label { font-size: 13px; color: var(--muted); font-weight: 400; line-height: 1.5; }
-
-    .about-bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .about-bio { background: var(--dark); border-radius: 16px; padding: 36px 32px; }
-
-    .about-bio h3 { font-size: 20px; font-weight: 700; color: var(--bg); letter-spacing: -0.5px; margin-bottom: 16px; }
-
-    .about-bio p {
-      font-size: 18px; line-height: 1.8; color: rgba(250, 248, 244, 0.65);
-      margin-bottom: 12px; font-weight: 300;
-    }
-
-    .about-bio p:last-of-type { margin-bottom: 0; }
-    .about-bio strong { color: var(--bg); font-weight: 600; }
-
-    .about-extras { display: flex; flex-direction: column; gap: 16px; }
-
-    .about-xcard {
-      background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 16px; padding: 24px; flex: 1; transition: all 0.25s;
-    }
-
-    .about-xcard:hover { border-color: rgba(208, 90, 20, 0.2); transform: translateY(-2px); }
-
-    .axc-icon { font-size: 20px; margin-bottom: 10px; display: block; }
-    .axc-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
-    .axc-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    .loc-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(208, 90, 20, 0.08); border: 1.5px solid rgba(208, 90, 20, 0.2);
-      border-radius: 100px; padding: 8px 16px;
-      font-size: 13px; font-weight: 500; color: var(--orange); margin-top: 16px;
-    }
-
-    /* CONTACT */
-    .contact-band {
-      background: var(--dark); border-radius: 20px; padding: 60px 52px;
-      display: grid; grid-template-columns: 1fr auto; gap: 40px;
-      align-items: center; position: relative; overflow: hidden;
-    }
-
-    .contact-band::before {
-      content: 'HIRE ME'; position: absolute; right: -20px; top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      font-size: 80px; font-weight: 700; color: rgba(250, 248, 244, 0.03);
-      letter-spacing: 8px; pointer-events: none; white-space: nowrap;
-    }
-
-    .contact-band h2 {
-      font-size: 42px; font-weight: 700; color: var(--bg);
-      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 10px;
-    }
-
-    .contact-band h2 span { color: var(--orange-light); }
-
-    .contact-band p { font-size: 15px; color: rgba(250, 248, 244, 0.42); line-height: 1.6; max-width: 420px; }
-
-    .contact-btns { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
-
-    .btn-orange {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--orange); color: #fff; padding: 13px 22px;
-      border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600;
-      transition: all 0.2s; white-space: nowrap;
-      box-shadow: 0 4px 16px rgba(208, 90, 20, 0.38);
-    }
-
-    .btn-orange:hover { background: #b84d10; transform: translateY(-2px); }
-
-    .btn-light {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(250, 248, 244, 0.07); color: rgba(250, 248, 244, 0.72);
-      padding: 13px 22px; border-radius: 8px; text-decoration: none;
-      font-size: 14px; font-weight: 500;
-      border: 1px solid rgba(250, 248, 244, 0.1); transition: all 0.2s; white-space: nowrap;
-    }
-
-    .btn-light:hover { background: rgba(250, 248, 244, 0.12); color: var(--bg); transform: translateY(-2px); }
-
-    /* FOOTER */
-    .footer { padding: 28px 0; }
-
-    .footer-inner {
-      max-width: 900px; margin: 0 auto; padding: 24px 40px 0;
-      border-top: 1.5px solid rgba(26, 18, 8, 0.07);
-      display: flex; justify-content: center; align-items: center;
-    }
-
-    .footer-inner p { font-size: 12px; color: var(--faint); }
-
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.on { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.2s; }
-    .d3 { transition-delay: 0.3s; }
-
-    #hamburger { display: none; }
-
-    /* RESPONSIVE */
-    @media (max-width: 700px) {
-      #hamburger { display: flex !important; }
-      .nav-links { display: none; }
-      .hero { flex-direction: column; padding-top: 100px; text-align: center; }
-      .hero-eyebrow { justify-content: center; }
-      .hero-cta { justify-content: center; }
-      .hero-role-row { justify-content: center; }
-      .tl-role { padding-left: 20px; font-size: 16px; }
-      .tl-bullets li { font-size: 11px; }
-      .orbit-wrap { width: 220px; height: 220px; }
-      .ring1 { width: 220px; height: 220px; }
-      .ring2 { width: 155px; height: 155px; }
-      .orbit-outer { width: 220px; height: 220px; }
-      .orbit-inner { width: 155px; height: 155px; }
-      .photo-circle { width: 100px; height: 100px; }
-      .photo-initials { font-size: 36px; }
-      .icon-node { width: 40px; height: 40px; font-size: 10px; }
-      .skill-row { grid-template-columns: 40px 1fr; gap: 12px; flex-wrap: wrap; }
-      .skill-desc { font-size: 11px; grid-column: 1 / -1; padding-left: 52px; }
-      .skill-name { font-size: 15px; }
-      .skill-big-num { font-size: 28px; }
-      .tl-item { grid-template-columns: 1fr; gap: 8px; }
-      .tl-left { padding-left: 20px; }
-      .proj-grid2 { grid-template-columns: 1fr; }
-      .proj-card2.span2 { grid-column: span 1; display: flex; flex-direction: column; }
-      .about-stats-row { grid-template-columns: 1fr; }
-      .asc-num { font-size: 32px; }
-      .contact-band { grid-template-columns: 1fr; padding: 40px 28px; }
-      .contact-band::before { display: none; }
-      .contact-btns { flex-direction: column; width: 100%; }
-      .btn-orange, .btn-light { width: 100%; justify-content: center; }
-      .wrap { padding: 0 20px; }
-      .nav-inner { padding: 0 20px; }
-      .footer-inner { padding: 20px 20px 0; flex-direction: column; gap: 8px; text-align: center; }
-      .nav-cv { display: none; }
-      .about-bottom-row { display: flex; flex-direction: column; }
-      .proj-card2-flip { perspective: none; min-height: unset; }
       .proj-card2-flip .flip-front-face,
-      .proj-card2-flip .flip-back-face { position: static; transform: none !important; backface-visibility: visible; transition: none; }
-      .proj-card2-flip .flip-back-face { display: none; }
-      .flip-hint { display: none; }
-    }
+      .proj-card2-flip .flip-back-face {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        min-height: 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 28px;
+      }
 
-    @media (max-width: 480px) {
-      .hero-name { font-size: 42px; letter-spacing: -1.5px; }
-      .sec-title { font-size: 30px; }
-      .contact-band { padding: 32px 20px; }
-      .contact-band h2 { font-size: 26px; }
-      .btn-orange, .btn-light { width: 100%; justify-content: center; }
-    }
-  </style>
-</head>
+      .proj-card2-flip .flip-front-face {
+        transform: rotateY(0deg);
+        justify-content: flex-start;
+      }
+      .proj-card2-wrap {
+        min-height: unset !important;
+      }
 
-<body>
+      .proj-card2-flip .flip-back-face {
+        transform: rotateY(180deg);
+        background: var(--dark);
+        border-color: rgba(208, 90, 20, 0.35);
+      }
 
-  <div class="bg-blob"></div>
-  <div class="bg-blob2"></div>
+      .proj-card2-flip.is-flipped .flip-front-face {
+        transform: rotateY(-180deg);
+      }
+      .proj-card2-flip.is-flipped .flip-back-face {
+        transform: rotateY(0deg);
+      }
 
-  <nav>
-    <div class="nav-inner">
-      <a href="https://github.com/ap23hp" target="_blank" rel="noopener" class="nav-logo">aprakhanna<em>↗</em></a>
-      <button id="hamburger" style="flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;" aria-label="Menu">
-        <span style="display:block;width:22px;height:2px;background:#1a1208;border-radius:2px;transition:all 0.3s;"></span>
-        <span style="display:block;width:22px;height:2px;background:#1a1208;border-radius:2px;transition:all 0.3s;"></span>
-        <span style="display:block;width:22px;height:2px;background:#1a1208;border-radius:2px;transition:all 0.3s;"></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="ApraK_Resume_developer.pdf" download class="nav-cv">Download Resume</a></li>
-      </ul>
-    </div>
-  </nav>
+      .flip-hint {
+        margin-top: auto;
+        padding-top: 12px;
+        font-size: 11px;
+        color: var(--orange);
+        font-weight: 500;
+        opacity: 0.7;
+      }
 
-  <!-- HERO -->
-  <div class="wrap">
-    <section class="hero">
-      <div class="hero-left">
-        <div class="hero-eyebrow">
-          <div class="dot-live"></div>
-          <span class="eyebrow-text">Full-Stack Developer · Seeking Opportunities in UK</span>
-        </div>
-        <h1 class="hero-name">Apra<br><span class="hl">Khanna.</span></h1>
-        <div class="hero-role-row">
-          <div class="role-pill">Full-Stack <b>WordPress</b> Developer</div>
-          <div class="role-loc">📍 London, UK</div>
-        </div>
-        <p class="hero-desc">3+ years building custom WordPress plugins, React apps &amp; API integrations for global clients.</p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn-main">See my work →</a>
-          <a href="#contact" class="btn-out">Let's talk</a>
-        </div>
+      .flip-back-face h3 {
+        color: var(--bg) !important;
+      }
+      .flip-back-face .proj-num2 {
+        color: rgba(208, 90, 20, 0.7);
+      }
+      .flip-back-face .proj-num2::after {
+        background: rgba(208, 90, 20, 0.2);
+      }
+
+      .flip-bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .flip-bullets li {
+        font-size: 13px;
+        color: rgba(250, 248, 244, 0.65);
+        line-height: 1.55;
+        padding-left: 18px;
+        position: relative;
+        font-weight: 400;
+      }
+
+      .flip-bullets li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--orange);
+        font-size: 11px;
+        top: 2px;
+      }
+
+      .flip-back-btns {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .flip-btn-cs {
+        display: inline-flex;
+        align-items: center;
+        background: var(--orange);
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.2s;
+        box-shadow: 0 4px 16px rgba(208, 90, 20, 0.35);
+      }
+
+      .flip-btn-cs:hover {
+        background: #b84d10;
+        transform: translateY(-1px);
+      }
+
+      .flip-btn-live {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(250, 248, 244, 0.08);
+        color: rgba(250, 248, 244, 0.75);
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        border: 1px solid rgba(250, 248, 244, 0.12);
+        transition: all 0.2s;
+      }
+
+      .flip-btn-live:hover {
+        background: rgba(250, 248, 244, 0.14);
+        color: var(--bg);
+      }
+
+      /* ABOUT */
+      .about-new {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .about-stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .asc {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 16px;
+        padding: 28px 24px;
+        transition: all 0.25s;
+      }
+
+      .asc:hover {
+        border-color: rgba(208, 90, 20, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(208, 90, 20, 0.08);
+      }
+
+      .asc-num {
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--orange);
+        letter-spacing: -2px;
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .asc-label {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      .about-bottom-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .about-bio {
+        background: var(--dark);
+        border-radius: 16px;
+        padding: 36px 32px;
+      }
+
+      .about-bio h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--bg);
+        letter-spacing: -0.5px;
+        margin-bottom: 16px;
+      }
+
+      .about-bio p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(250, 248, 244, 0.65);
+        margin-bottom: 12px;
+        font-weight: 300;
+      }
+
+      .about-bio p:last-of-type {
+        margin-bottom: 0;
+      }
+      .about-bio strong {
+        color: var(--bg);
+        font-weight: 600;
+      }
+
+      .about-extras {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .about-xcard {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+        flex: 1;
+        transition: all 0.25s;
+      }
+
+      .about-xcard:hover {
+        border-color: rgba(208, 90, 20, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .axc-icon {
+        font-size: 20px;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .axc-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 5px;
+      }
+      .axc-text {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .loc-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(208, 90, 20, 0.08);
+        border: 1.5px solid rgba(208, 90, 20, 0.2);
+        border-radius: 100px;
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--orange);
+        margin-top: 16px;
+      }
+
+      /* CONTACT */
+      .contact-band {
+        background: var(--dark);
+        border-radius: 20px;
+        padding: 60px 52px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-band::before {
+        content: "HIRE ME";
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%) rotate(90deg);
+        font-size: 80px;
+        font-weight: 700;
+        color: rgba(250, 248, 244, 0.03);
+        letter-spacing: 8px;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+
+      .contact-band h2 {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--bg);
+        letter-spacing: -1.5px;
+        line-height: 1.1;
+        margin-bottom: 10px;
+      }
+
+      .contact-band h2 span {
+        color: var(--orange-light);
+      }
+
+      .contact-band p {
+        font-size: 15px;
+        color: rgba(250, 248, 244, 0.42);
+        line-height: 1.6;
+        max-width: 420px;
+      }
+
+      .contact-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+
+      .btn-orange {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--orange);
+        color: #fff;
+        padding: 13px 22px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s;
+        white-space: nowrap;
+        box-shadow: 0 4px 16px rgba(208, 90, 20, 0.38);
+      }
+
+      .btn-orange:hover {
+        background: #b84d10;
+        transform: translateY(-2px);
+      }
+
+      .btn-light {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(250, 248, 244, 0.07);
+        color: rgba(250, 248, 244, 0.72);
+        padding: 13px 22px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid rgba(250, 248, 244, 0.1);
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+
+      .btn-light:hover {
+        background: rgba(250, 248, 244, 0.12);
+        color: var(--bg);
+        transform: translateY(-2px);
+      }
+
+      /* FOOTER */
+      .footer {
+        padding: 28px 0;
+      }
+
+      .footer-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 40px 0;
+        border-top: 1.5px solid rgba(26, 18, 8, 0.07);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .footer-inner p {
+        font-size: 12px;
+        color: var(--faint);
+      }
+
+      /* REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.on {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .d1 {
+        transition-delay: 0.1s;
+      }
+      .d2 {
+        transition-delay: 0.2s;
+      }
+      .d3 {
+        transition-delay: 0.3s;
+      }
+
+      #hamburger {
+        display: none;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 700px) {
+        #hamburger {
+          display: flex !important;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          flex-direction: column;
+          padding-top: 100px;
+          text-align: center;
+        }
+        .hero-eyebrow {
+          justify-content: center;
+        }
+        .hero-cta {
+          justify-content: center;
+        }
+        .hero-role-row {
+          justify-content: center;
+        }
+        .tl-role {
+          padding-left: 20px;
+          font-size: 16px;
+        }
+        .tl-bullets li {
+          font-size: 11px;
+        }
+        .orbit-wrap {
+          width: 220px;
+          height: 220px;
+        }
+        .ring1 {
+          width: 220px;
+          height: 220px;
+        }
+        .ring2 {
+          width: 155px;
+          height: 155px;
+        }
+        .orbit-outer {
+          width: 220px;
+          height: 220px;
+        }
+        .orbit-inner {
+          width: 155px;
+          height: 155px;
+        }
+        .photo-circle {
+          width: 100px;
+          height: 100px;
+        }
+        .photo-initials {
+          font-size: 36px;
+        }
+        .icon-node {
+          width: 40px;
+          height: 40px;
+          font-size: 10px;
+        }
+        .skill-row {
+          grid-template-columns: 40px 1fr;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+        .skill-desc {
+          font-size: 11px;
+          grid-column: 1 / -1;
+          padding-left: 52px;
+        }
+        .skill-name {
+          font-size: 15px;
+        }
+        .skill-big-num {
+          font-size: 28px;
+        }
+        .tl-item {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .tl-left {
+          padding-left: 20px;
+        }
+        .proj-grid2 {
+          grid-template-columns: 1fr;
+        }
+        .proj-card2.span2 {
+          grid-column: span 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .about-stats-row {
+          grid-template-columns: 1fr;
+        }
+        .asc-num {
+          font-size: 32px;
+        }
+        .contact-band {
+          grid-template-columns: 1fr;
+          padding: 40px 28px;
+        }
+        .contact-band::before {
+          display: none;
+        }
+        .contact-btns {
+          flex-direction: column;
+          width: 100%;
+        }
+        .btn-orange,
+        .btn-light {
+          width: 100%;
+          justify-content: center;
+        }
+        .wrap {
+          padding: 0 20px;
+        }
+        .nav-inner {
+          padding: 0 20px;
+        }
+        .footer-inner {
+          padding: 20px 20px 0;
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+        }
+        .nav-cv {
+          display: none;
+        }
+        .about-bottom-row {
+          display: flex;
+          flex-direction: column;
+        }
+        .proj-card2-flip {
+          perspective: none;
+          min-height: unset;
+        }
+        .proj-card2-flip .flip-front-face,
+        .proj-card2-flip .flip-back-face {
+          position: static;
+          transform: none !important;
+          backface-visibility: visible;
+          transition: none;
+        }
+        .proj-card2-flip .flip-back-face {
+          display: none;
+        }
+        .flip-hint {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-name {
+          font-size: 42px;
+          letter-spacing: -1.5px;
+        }
+        .sec-title {
+          font-size: 30px;
+        }
+        .contact-band {
+          padding: 32px 20px;
+        }
+        .contact-band h2 {
+          font-size: 26px;
+        }
+        .btn-orange,
+        .btn-light {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-blob"></div>
+    <div class="bg-blob2"></div>
+
+    <nav>
+      <div class="nav-inner">
+        <a
+          href="https://github.com/ap23hp"
+          target="_blank"
+          rel="noopener"
+          class="nav-logo"
+          >aprakhanna<em>↗</em></a
+        >
+        <button
+          id="hamburger"
+          style="
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+          "
+          aria-label="Menu"
+        >
+          <span
+            style="
+              display: block;
+              width: 22px;
+              height: 2px;
+              background: #1a1208;
+              border-radius: 2px;
+              transition: all 0.3s;
+            "
+          ></span>
+          <span
+            style="
+              display: block;
+              width: 22px;
+              height: 2px;
+              background: #1a1208;
+              border-radius: 2px;
+              transition: all 0.3s;
+            "
+          ></span>
+          <span
+            style="
+              display: block;
+              width: 22px;
+              height: 2px;
+              background: #1a1208;
+              border-radius: 2px;
+              transition: all 0.3s;
+            "
+          ></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="ApraK_Resume_developer.pdf" download class="nav-cv"
+              >Download Resume</a
+            >
+          </li>
+        </ul>
       </div>
-      <div class="orbit-wrap">
-        <div class="orbit-ring ring1"></div>
-        <div class="orbit-ring ring2"></div>
-        <div class="orbit-outer">
-          <div class="icon-node in-orange c-outer" style="top:0;left:50%;">WP</div>
-          <div class="icon-node in-dark c-outer" style="top:50%;left:100%;">PHP</div>
-          <div class="icon-node in-orange c-outer" style="top:100%;left:50%;">JS</div>
-          <div class="icon-node in-light c-outer" style="top:50%;left:0%;">Git</div>
-        </div>
-        <div class="orbit-inner">
-          <div class="icon-node in-light c-inner" style="top:0;left:50%;font-size:9px;">React</div>
-          <div class="icon-node in-dark c-inner" style="top:100%;left:50%;">SQL</div>
-        </div>
-        <div class="photo-circle">
-          <img src="apra.jpg.jpeg" alt="Apra Khanna"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <span class="photo-initials" style="display:none;">AK</span>
-        </div>
-      </div>
-    </section>
-  </div>
+    </nav>
 
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-track" id="mtrack"></div>
-  </div>
-
-  <!-- SKILLS -->
-  <div class="wrap">
-    <section class="section" id="skills">
-      <div class="reveal">
-        <div class="sec-eye">What I do</div>
-        <div class="sec-title">Skills &amp; Expertise</div>
-      </div>
-      <div class="skills-list">
-        <div class="skill-row reveal">
-          <div class="skill-big-num">01</div>
-          <div class="skill-name">WordPress &amp; PHP</div>
-          <div class="skill-desc">Custom plugins &amp; themes, Bricks Builder, ACF, Gutenberg, CPTs, WP-CLI, Multisite, geolocation rendering</div>
-        </div>
-        <div class="skill-row reveal d1">
-          <div class="skill-big-num">02</div>
-          <div class="skill-name">React &amp; JavaScript</div>
-          <div class="skill-desc">React.js, ES6+, component architecture, hooks, state management, DOM manipulation, API integrations</div>
-        </div>
-        <div class="skill-row reveal d2">
-          <div class="skill-big-num">03</div>
-          <div class="skill-name">Frontend &amp; UI</div>
-          <div class="skill-desc">HTML5, CSS3, Tailwind CSS, Bootstrap, responsive / mobile-first design, WCAG 2.1 accessibility</div>
-        </div>
-        <div class="skill-row reveal d1">
-          <div class="skill-big-num">04</div>
-          <div class="skill-name">Backend &amp; Database</div>
-          <div class="skill-desc">Node.js, Express.js, REST APIs, SQLite, SQL, custom DB tables, JSON-LD / Schema.org structured data</div>
-        </div>
-        <div class="skill-row reveal d2">
-          <div class="skill-big-num">05</div>
-          <div class="skill-name">Performance &amp; SEO</div>
-          <div class="skill-desc">Core Web Vitals, PageSpeed optimisation, Yoast SEO, Schema markup, cross-browser compatibility</div>
-        </div>
-        <div class="skill-row reveal d3">
-          <div class="skill-big-num">06</div>
-          <div class="skill-name">Tools &amp; Workflow</div>
-          <div class="skill-desc">Git, GitHub, Postman, VS Code, Figma, Chrome DevTools, Agile / Scrum, remote-first collaboration</div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- EXPERIENCE -->
-  <div class="exp-section-wrap">
+    <!-- HERO -->
     <div class="wrap">
-      <section class="section" id="experience">
-        <div class="reveal">
-          <div class="sec-eye">Work history</div>
-          <div class="sec-title">Experience</div>
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-eyebrow">
+            <div class="dot-live"></div>
+            <span class="eyebrow-text"
+              >Full-Stack Developer · Seeking Opportunities in UK · Right to
+              work, no sponsorship needed
+            </span>
+          </div>
+          <h1 class="hero-name">Apra<br /><span class="hl">Khanna.</span></h1>
+          <div class="hero-role-row">
+            <div class="role-pill">Full-Stack <b>WordPress</b> Developer</div>
+            <div class="role-loc">📍 London, UK</div>
+          </div>
+          <p class="hero-desc">
+            3+ years building custom WordPress plugins, React apps &amp; API
+            integrations for global clients.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn-main">See my work →</a>
+            <a href="#contact" class="btn-out">Let's talk</a>
+          </div>
         </div>
-        <div class="timeline">
-
-          <div class="tl-item reveal">
-            <div class="tl-left">
-              <div class="tl-period">Jan 2026 – May 2026</div>
-              <div class="tl-company">Milani Electric and Solar · Sister company of Milani Plumbing, Heating &amp; Air Conditioning, Canada</div>
+        <div class="orbit-wrap">
+          <div class="orbit-ring ring1"></div>
+          <div class="orbit-ring ring2"></div>
+          <div class="orbit-outer">
+            <div class="icon-node in-orange c-outer" style="top: 0; left: 50%">
+              WP
             </div>
-            <div class="tl-right">
-              <div class="tl-role">Software Developer — WordPress</div>
-              <ul class="tl-bullets">
-                <li>Worked directly with the Canadian parent company team in BC, gaining hands-on remote-first, cross-border collaboration experience.</li>
-                <li>Architected a scalable multi-location WordPress system using Bricks Builder — reduced new-city setup time by an estimated 60%.</li>
-                <li>Engineered geolocation-based content rendering (GPS → IP → postal code fallback) to personalise UX dynamically for regional audiences.</li>
-                <li>Built custom WordPress plugin (4,000+ lines of PHP) with intelligent URL rewrite rules enabling 80+ service pages without manual creation
-</li>
-                <li>Built a custom WordPress plugin to automate dynamic content management and eliminate reliance on third-party plugins.</li>
-              <li>Implemented JSON-LD structured data (LocalBusiness, Service, BreadcrumbList) optimized for Google Local Pack rankings
-</li>
-<li>Optimized Core Web Vitals: 57% LCP improvement (4.2s → 1.8s), 75% FID improvement (180ms → 45ms), 73% CLS improvement (0.15 → 0.04)
-</li>
-<li>Integrated Google Tag Manager & Conversion API for lead attribution tracking across 12 cities</li>
-<li>Built custom lead capture system with admin dashboard, form validation, and email notifications
-</li>
-<li>Deployed fully customized website to production (milanielectric.com) — live with international clients</li>
-</ul>
+            <div class="icon-node in-dark c-outer" style="top: 50%; left: 100%">
+              PHP
+            </div>
+            <div
+              class="icon-node in-orange c-outer"
+              style="top: 100%; left: 50%"
+            >
+              JS
+            </div>
+            <div class="icon-node in-light c-outer" style="top: 50%; left: 0%">
+              Git
             </div>
           </div>
-
-          <div class="tl-item reveal d1">
-            <div class="tl-left">
-              <div class="tl-period">Jul 2022 – Jan 2023</div>
-              <div class="tl-company">Compunnel Software Group, Inc.</div>
+          <div class="orbit-inner">
+            <div
+              class="icon-node in-light c-inner"
+              style="top: 0; left: 50%; font-size: 9px"
+            >
+              React
             </div>
-            <div class="tl-right">
-              <div class="tl-role">Software Developer — React / Frontend</div>
-              <ul class="tl-bullets">
-                <li>Built and enhanced reusable React.js UI components for Red Hat's client-facing eBook platform, implementing WCAG 2.1 a11y standards.</li>
-                <li>Diagnosed and resolved complex UI bugs and collaborated asynchronously with cross-functional teams on multiple dashboard interfaces.</li>
-              </ul>
+            <div class="icon-node in-dark c-inner" style="top: 100%; left: 50%">
+              SQL
             </div>
           </div>
-
-          <div class="tl-item reveal d2">
-            <div class="tl-left">
-              <div class="tl-period">Jul 2020 – Jul 2022</div>
-              <div class="tl-company">WhiteHat Education Technology Pvt. Ltd.</div>
-            </div>
-            <div class="tl-right">
-              <div class="tl-role">Coding Mentor — Web Development</div>
-              <ul class="tl-bullets">
-                <li>Delivered structured remote learning on HTML, CSS, JavaScript, REST APIs and CRUD via a game-based learning platform.</li>
-                <li>Guided students in building accessible, interactive projects and integrated AI-assisted development workflows into the curriculum.</li>
-              </ul>
-            </div>
+          <div class="photo-circle">
+            <img
+              src="apra.jpg.jpeg"
+              alt="Apra Khanna"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <span class="photo-initials" style="display: none">AK</span>
           </div>
-
-          <div class="tl-item reveal d3">
-            <div class="tl-left">
-              <div class="tl-period">Jun 2016 – Jul 2016</div>
-              <div class="tl-company">IBM India Pvt. Ltd.</div>
-            </div>
-            <div class="tl-right">
-              <div class="tl-role">Frontend Intern</div>
-              <ul class="tl-bullets">
-                <li>Designed and delivered responsive landing pages for Vodafone product campaigns applying mobile-first design principles.</li>
-              </ul>
-            </div>
-          </div>
-
         </div>
       </section>
     </div>
-  </div>
 
-  <!-- PROJECTS -->
-  <div class="wrap">
-    <section class="section" id="projects">
-      <div class="reveal">
-        <div class="sec-eye">Selected work</div>
-        <div class="sec-title">Projects</div>
-      </div>
-      <div class="proj-grid2">
-
-        <!-- MILANI FLIP CARD -->
-        <div class="proj-card2-wrap reveal" style="grid-column: span 2; min-height: unset;">
-          <div class="proj-card2-flip" id="flipCard0" style="min-height: unset;">
-            <!-- FRONT -->
-            <div class="proj-card2 flip-front-face">
-              <div class="proj-num2">01 · WordPress Plugin</div>
-              <h3>Milani Core — City Routing Plugin</h3>
-              <p>Milani Core is a custom WordPress plugin built for Milani Electrical & Solar, a multi-city electrical and solar company operating across multiple provinces of Canada. The plugin includes custom post types, clean URL routing, geolocation, lead capture forms, and structured data.
- The plugin runs a 3-step fallback chain, browser GPS → IP detection → manual postal code search to automatically redirect them to their nearest city's page.
-On the SEO side, the plugin dynamically generates LocalBusiness JSON-LD structured data for every city and service page </p>
-              <div class="proj-tags">
-                <span class="ptag">PHP</span><span class="ptag">WordPress</span><span class="ptag">Google Maps API</span><span class="ptag">AJAX</span>
-                <span class="ptag g">Custom CPTs</span><span class="ptag g">Schema.org</span><span class="ptag g">MySQL</span>
-              </div>
-              <div class="flip-hint">flip for details ↷</div>
-            </div>
-            <!-- BACK -->
-            <div class="proj-card2 flip-back-face">
-              <div class="proj-num2">01 · WordPress Plugin</div>
-              <h3>What I built</h3>
-              <ul class="flip-bullets">
-                <li>Built a custom WordPress plugin from scratch handling all site logic independent of the theme — CPTs, URL routing, geolocation, forms, and structured data</li>
-                <li>Engineered a 3-step geolocation fallback chain (Browser GPS → IP detection → postal code search) to auto-redirect users to their nearest city's page</li>
-                <li>Designed a clean URL architecture (<code style="font-size:11px;opacity:0.8;">/vancouver/ev-chargers/</code>) using custom rewrite rules mapping to CPT posts</li>
-                <li>Built a city-aware shortcode system so Bricks Builder templates stay reusable across all city pages</li>
-                <li>Implemented LocalBusiness JSON-LD structured data dynamically generated per city/service page for local SEO</li>
-                <li>Integrated a lead capture system with reCAPTCHA v3, DB storage, and email notifications</li>
-              </ul>
-              <div class="flip-back-btns">
-                  <a href="milani-case-study.html" class="flip-btn-cs">Read case study →</a>
-                <a href="https://github.com/ap23hp" target="_blank" rel="noopener" class="flip-btn-cs">GitHub →</a>
-             
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GTG FLIP CARD -->
-        <div class="proj-card2-wrap reveal d1">
-          <div class="proj-card2-flip" id="flipCard1">
-            <!-- FRONT -->
-            <div class="proj-card2 flip-front-face">
-              <div class="proj-num2">02 · E-commerce UI</div>
-              <h3>GTG Perfumes Landing Page</h3>
-              <p>Subscription e-commerce landing page for a DTC fragrance client — 9 cart combinations, dynamic URL builder, image gallery and accordion. No frameworks, no page builders. Pixel-matched from Figma.</p>
-              <div class="proj-tags">
-                <span class="ptag">HTML / CSS</span>
-                <span class="ptag">JavaScript</span>
-                <span class="ptag">Figma → Code</span>
-                <span class="ptag g">Netlify</span>
-              </div>
-              <div class="flip-hint">flip for case study ↷</div>
-            </div>
-            <!-- BACK -->
-            <div class="proj-card2 flip-back-face">
-              <div class="proj-num2">02 · E-commerce UI</div>
-              <h3>What I solved</h3>
-              <ul class="flip-bullets">
-                <li>9 cart combinations mapped to dynamic WooCommerce URLs — zero plugins</li>
-                <li>Subscription expand/collapse via single DOM class toggle</li>
-                <li>Image gallery — arrows, dots and thumbs all synced from one function</li>
-                <li>3 breakpoints designed from scratch — Figma had desktop only</li>
-              </ul>
-              <div class="flip-back-btns">
-                <a href="gtg.html" class="flip-btn-cs">Read case study →</a>
-                <a href="https://gtgp.netlify.app/" target="_blank" rel="noopener" class="flip-btn-live">↗ Live</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- AI CHEF FLIP CARD -->
-        <div class="proj-card2-wrap reveal d2">
-          <div class="proj-card2-flip" id="flipCard2">
-            <!-- FRONT -->
-            <div class="proj-card2 flip-front-face">
-              <div class="proj-num2">03 · React App</div>
-              <h3>AI Chef — Recipe Generator</h3>
-              <p>React app that generates recipes from available ingredients using an AI API. Component architecture with hooks, state management, and a serverless backend on Netlify Functions.</p>
-              <div class="proj-tags">
-                <span class="ptag">React</span>
-                <span class="ptag">Vite</span>
-                <span class="ptag">AI API</span>
-                <span class="ptag g">Hooks</span>
-                <span class="ptag g">Netlify Functions</span>
-                <span class="ptag g">Serverless</span>
-              </div>
-              <div class="flip-hint">flip for details ↷</div>
-            </div>
-            <!-- BACK -->
-            <div class="proj-card2 flip-back-face">
-              <div class="proj-num2">03 · React App</div>
-              <h3>What I built</h3>
-              <ul class="flip-bullets">
-                <li>Component architecture — Header + Main split into reusable React components</li>
-                <li>useState hooks managing ingredient list, recipe output, and loading/error states</li>
-                <li>Serverless backend via Netlify Functions — API key never exposed to client</li>
-                <li>React Markdown rendering AI-generated recipe output with custom CSS</li>
-              </ul>
-              <div class="flip-back-btns">
-                <a href="https://ai-chef-react-by-apra.netlify.app/" target="_blank" rel="noopener" class="flip-btn-cs">↗ Live site</a>
-                <a href="https://github.com/ap23hp/AI-Chef-React" target="_blank" rel="noopener" class="flip-btn-live">GitHub →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <a href="https://ap23hp.github.io/Weather-App/" target="_blank" rel="noopener" class="proj-card2 reveal d1">
-          <div class="proj-num2">04 · JavaScript</div>
-          <h3>Weather App</h3>
-          <p>Live weather app with location detection, dynamic UI updates and a clean responsive interface. Deployed on GitHub Pages.</p>
-          <div class="proj-tags">
-            <span class="ptag">JavaScript</span><span class="ptag g">Weather API</span><span class="ptag g">GitHub Pages</span>
-          </div>
-          <div class="arr-box" style="margin-top:16px;align-self:flex-start;">↗</div>
-        </a>
-
-        <a href="https://tenzies-game-apra.netlify.app/" target="_blank" rel="noopener" class="proj-card2 reveal d2">
-          <div class="proj-num2">05 · React Game</div>
-          <h3>Tenzies Dice Game</h3>
-          <p>Interactive React dice game with win detection, state management across multiple components and smooth UI animations.</p>
-          <div class="proj-tags">
-            <span class="ptag">React</span><span class="ptag g">State Management</span><span class="ptag g">Netlify</span>
-          </div>
-          <div class="arr-box" style="margin-top:16px;align-self:flex-start;">↗</div>
-        </a>
-
-      </div>
-    </section>
-  </div>
-
-  <!-- ABOUT -->
-  <div class="wrap">
-    <section class="section" id="about">
-      <div class="reveal">
-        <div class="sec-eye">Background</div>
-        <div class="sec-title">About Me</div>
-      </div>
-      <div class="about-new">
-        <div class="about-stats-row reveal">
-          <div class="asc">
-            <div class="asc-num">3+</div>
-            <div class="asc-label">Years of professional development experience</div>
-          </div>
-          <div class="asc">
-            <div class="asc-num">8+</div>
-            <div class="asc-label">Projects built and shipped across web &amp; React</div>
-          </div>
-          <div class="asc">
-            <div class="asc-num">60%</div>
-            <div class="asc-label">Faster city setup time delivered at Milani</div>
-          </div>
-        </div>
-        <div class="about-bottom-row reveal d1">
-          <div class="about-bio">
-            <h3>Hi, I'm Apra 👋</h3>
-<p>I'm a <strong>Full-Stack WordPress Developer</strong> based in London — I build custom plugin architecture, not just theme installs and plugin configs.</p>
-<p>My flagship project, <strong>Milani Core</strong>, is a production WordPress plugin with a 3-tier geolocation engine, 80+ dynamically generated pages, and custom lead capture — built end-to-end, decisions and all. Earlier, I built <strong>React frontends</strong> at Compunnel for Red Hat's platform, with roots going back to <strong>IBM India</strong>.</p>
-<p>I've delivered fully remote, cross-border with a Canada-based team — so I know how to own a project independently, with no hand-holding required.</p>
-<div class="loc-badge">London, UK · Right to work, no sponsorship needed · Open to Hybrid & Remote</div>
-          </div>
-          <div class="about-extras">
-            <div class="about-xcard">
-              <span class="axc-icon">🌍</span>
-              <div class="axc-title">Remote-first experience</div>
-              <div class="axc-text">Worked cross-border with a Canadian company — async communication, independent delivery, no hand-holding needed.</div>
-            </div>
-            <div class="about-xcard">
-              <span class="axc-icon">⚡</span>
-              <div class="axc-title">Full ownership mindset</div>
-              <div class="axc-text">From plugin architecture to frontend polish — I take a brief and see it through to production without dropping the ball.</div>
-            </div>
-            <div class="about-xcard">
-              <span class="axc-icon">🇬🇧</span>
-              <div class="axc-title">Settled in London</div>
-              <div class="axc-text"> Right to work in the UK with no sponsorship needed — open to remote, hybrid or office-based roles </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- CONTACT -->
-  <div class="wrap">
-    <section class="section" id="contact">
-      <div class="contact-band reveal">
-        <div>
-          <h2>Let's build<br><span>something great.</span></h2>
-          <p>Looking for WordPress Developer or Full-Stack roles in the UK.</p>
-          <p style="margin-top:12px;font-size:14px;color:rgba(250,248,244,0.75);display:flex;align-items:center;gap:8px;">
-            ✉ <a href="mailto:apra.khanna2304@gmail.com" style="color:rgba(250,248,244,0.75);text-decoration:none;">apra.khanna2304@gmail.com</a>
-          </p>
-        </div>
-        <div class="contact-btns">
-          <a href="mailto:apra.khanna2304@gmail.com" class="btn-orange">Send email →</a>
-          <a href="https://github.com/ap23hp" target="_blank" rel="noopener" class="btn-light">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/apra-khanna-723a6415a/" target="_blank" rel="noopener" class="btn-light">LinkedIn ↗</a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <p>© 2026 Apra Khanna</p>
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-track" id="mtrack"></div>
     </div>
-  </footer>
 
-  <script>
-    const hbg = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    hbg.addEventListener('click', function() {
-      const isOpen = navLinks.style.display === 'flex';
-      navLinks.style.display = isOpen ? 'none' : 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'fixed';
-      navLinks.style.top = '58px';
-      navLinks.style.left = '0';
-      navLinks.style.right = '0';
-      navLinks.style.background = 'rgba(250,248,244,0.98)';
-      navLinks.style.padding = '20px 24px';
-      navLinks.style.gap = '4px';
-      navLinks.style.borderBottom = '1.5px solid rgba(208,90,20,0.1)';
-      navLinks.style.zIndex = '99';
-    });
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.addEventListener('click', () => { navLinks.style.display = 'none'; });
-    });
+    <!-- SKILLS -->
+    <div class="wrap">
+      <section class="section" id="skills">
+        <div class="reveal">
+          <div class="sec-eye">What I do</div>
+          <div class="sec-title">Skills &amp; Expertise</div>
+        </div>
+        <div class="skills-list">
+          <div class="skill-row reveal">
+            <div class="skill-big-num">01</div>
+            <div class="skill-name">WordPress &amp; PHP</div>
+            <div class="skill-desc">
+              Custom plugins &amp; themes, Bricks Builder, ACF, Gutenberg, CPTs,
+              WP-CLI, Multisite, geolocation rendering
+            </div>
+          </div>
+          <div class="skill-row reveal d1">
+            <div class="skill-big-num">02</div>
+            <div class="skill-name">React &amp; JavaScript</div>
+            <div class="skill-desc">
+              React.js, ES6+, component architecture, hooks, state management,
+              DOM manipulation, API integrations
+            </div>
+          </div>
+          <div class="skill-row reveal d2">
+            <div class="skill-big-num">03</div>
+            <div class="skill-name">Frontend &amp; UI</div>
+            <div class="skill-desc">
+              HTML5, CSS3, Tailwind CSS, Bootstrap, responsive / mobile-first
+              design, WCAG 2.1 accessibility
+            </div>
+          </div>
+          <div class="skill-row reveal d1">
+            <div class="skill-big-num">04</div>
+            <div class="skill-name">Backend &amp; Database</div>
+            <div class="skill-desc">
+              Node.js, Express.js, REST APIs, SQLite, SQL, custom DB tables,
+              JSON-LD / Schema.org structured data
+            </div>
+          </div>
+          <div class="skill-row reveal d2">
+            <div class="skill-big-num">05</div>
+            <div class="skill-name">Performance &amp; SEO</div>
+            <div class="skill-desc">
+              Core Web Vitals, PageSpeed optimisation, Yoast SEO, Schema markup,
+              cross-browser compatibility
+            </div>
+          </div>
+          <div class="skill-row reveal d3">
+            <div class="skill-big-num">06</div>
+            <div class="skill-name">Tools &amp; Workflow</div>
+            <div class="skill-desc">
+              Git, GitHub, Postman, VS Code, Figma, Chrome DevTools, Agile /
+              Scrum, remote-first collaboration
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-    const skills = ['PHP', 'WordPress', 'React.js', 'JavaScript ES6+', 'Google Maps API', 'AJAX', 'Node.js', 'Tailwind CSS', 'REST APIs', 'Git & GitHub', 'Bricks Builder', 'Schema.org', 'WCAG 2.1', 'WP Engine', 'Netlify', 'Figma'];
-    const track = document.getElementById('mtrack');
-    const html = [...skills, ...skills].map(s => `<div class="marquee-item"><div class="mdot"></div>${s}</div>`).join('');
-    track.innerHTML = html + html;
+    <!-- EXPERIENCE -->
+    <div class="exp-section-wrap">
+      <div class="wrap">
+        <section class="section" id="experience">
+          <div class="reveal">
+            <div class="sec-eye">Work history</div>
+            <div class="sec-title">Experience</div>
+          </div>
+          <div class="timeline">
+            <div class="tl-item reveal">
+              <div class="tl-left">
+                <div class="tl-period">Jan 2026 – May 2026</div>
+                <div class="tl-company">
+                  Milani Electric and Solar · Sister company of Milani Plumbing,
+                  Heating &amp; Air Conditioning, Canada
+                </div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-role">Software Developer — WordPress</div>
+                <ul class="tl-bullets">
+                  <li>
+                    Worked directly with the Canadian parent company team in BC,
+                    gaining hands-on remote-first, cross-border collaboration
+                    experience.
+                  </li>
+                  <li>
+                    Architected a scalable multi-location WordPress system using
+                    Bricks Builder — reduced new-city setup time by an estimated
+                    60%.
+                  </li>
+                  <li>
+                    Engineered geolocation-based content rendering (GPS → IP →
+                    postal code fallback) to personalise UX dynamically for
+                    regional audiences.
+                  </li>
+                  <li>
+                    Built custom WordPress plugin (4,000+ lines of PHP) with
+                    intelligent URL rewrite rules enabling 80+ service pages
+                    without manual creation
+                  </li>
+                  <li>
+                    Built a custom WordPress plugin to automate dynamic content
+                    management and eliminate reliance on third-party plugins.
+                  </li>
+                  <li>
+                    Implemented JSON-LD structured data (LocalBusiness, Service,
+                    BreadcrumbList) optimized for Google Local Pack rankings
+                  </li>
+                  <li>
+                    Optimized Core Web Vitals: 57% LCP improvement (4.2s →
+                    1.8s), 75% FID improvement (180ms → 45ms), 73% CLS
+                    improvement (0.15 → 0.04)
+                  </li>
+                  <li>
+                    Integrated Google Tag Manager & Conversion API for lead
+                    attribution tracking across 12 cities
+                  </li>
+                  <li>
+                    Built custom lead capture system with admin dashboard, form
+                    validation, and email notifications
+                  </li>
+                  <li>
+                    Deployed fully customized website to production
+                    (milanielectric.com) — live with international clients
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => obs.observe(el));
+            <div class="tl-item reveal d1">
+              <div class="tl-left">
+                <div class="tl-period">Jul 2022 – Jan 2023</div>
+                <div class="tl-company">Compunnel Software Group, Inc.</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-role">Software Developer — React / Frontend</div>
+                <ul class="tl-bullets">
+                  <li>
+                    Built and enhanced reusable React.js UI components for Red
+                    Hat's client-facing eBook platform, implementing WCAG 2.1
+                    a11y standards.
+                  </li>
+                  <li>
+                    Diagnosed and resolved complex UI bugs and collaborated
+                    asynchronously with cross-functional teams on multiple
+                    dashboard interfaces.
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const href = a.getAttribute('href');
-        if (href === '#') return;
-        e.preventDefault();
-        const t = document.querySelector(href);
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            <div class="tl-item reveal d2">
+              <div class="tl-left">
+                <div class="tl-period">Jul 2020 – Jul 2022</div>
+                <div class="tl-company">
+                  WhiteHat Education Technology Pvt. Ltd.
+                </div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-role">Coding Mentor — Web Development</div>
+                <ul class="tl-bullets">
+                  <li>
+                    Delivered structured remote learning on HTML, CSS,
+                    JavaScript, REST APIs and CRUD via a game-based learning
+                    platform.
+                  </li>
+                  <li>
+                    Guided students in building accessible, interactive projects
+                    and integrated AI-assisted development workflows into the
+                    curriculum.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tl-item reveal d3">
+              <div class="tl-left">
+                <div class="tl-period">Jun 2016 – Jul 2016</div>
+                <div class="tl-company">IBM India Pvt. Ltd.</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-role">Frontend Intern</div>
+                <ul class="tl-bullets">
+                  <li>
+                    Designed and delivered responsive landing pages for Vodafone
+                    product campaigns applying mobile-first design principles.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="wrap">
+      <section class="section" id="projects">
+        <div class="reveal">
+          <div class="sec-eye">Selected work</div>
+          <div class="sec-title">Projects</div>
+        </div>
+        <div class="proj-grid2">
+          <!-- MILANI FLIP CARD -->
+          <div
+            class="proj-card2-wrap reveal"
+            style="grid-column: span 2; min-height: unset"
+          >
+            <div
+              class="proj-card2-flip"
+              id="flipCard0"
+              style="min-height: unset"
+            >
+              <!-- FRONT -->
+              <div class="proj-card2 flip-front-face">
+                <div class="proj-num2">01 · WordPress Plugin</div>
+                <h3>Milani Core — City Routing Plugin</h3>
+                <p>
+                  Milani Core is a custom WordPress plugin built for Milani
+                  Electrical & Solar, a multi-city electrical and solar company
+                  operating across multiple provinces of Canada. The plugin
+                  includes custom post types, clean URL routing, geolocation,
+                  lead capture forms, and structured data. The plugin runs a
+                  3-step fallback chain, browser GPS → IP detection → manual
+                  postal code search to automatically redirect them to their
+                  nearest city's page. On the SEO side, the plugin dynamically
+                  generates LocalBusiness JSON-LD structured data for every city
+                  and service page
+                </p>
+                <div class="proj-tags">
+                  <span class="ptag">PHP</span
+                  ><span class="ptag">WordPress</span
+                  ><span class="ptag">Google Maps API</span
+                  ><span class="ptag">AJAX</span>
+                  <span class="ptag g">Custom CPTs</span
+                  ><span class="ptag g">Schema.org</span
+                  ><span class="ptag g">MySQL</span>
+                </div>
+                <div class="flip-hint">flip for details ↷</div>
+              </div>
+              <!-- BACK -->
+              <div class="proj-card2 flip-back-face">
+                <div class="proj-num2">01 · WordPress Plugin</div>
+                <h3>What I built</h3>
+                <ul class="flip-bullets">
+                  <li>
+                    Built a custom WordPress plugin from scratch handling all
+                    site logic independent of the theme — CPTs, URL routing,
+                    geolocation, forms, and structured data
+                  </li>
+                  <li>
+                    Engineered a 3-step geolocation fallback chain (Browser GPS
+                    → IP detection → postal code search) to auto-redirect users
+                    to their nearest city's page
+                  </li>
+                  <li>
+                    Designed a clean URL architecture (<code
+                      style="font-size: 11px; opacity: 0.8"
+                      >/vancouver/ev-chargers/</code
+                    >) using custom rewrite rules mapping to CPT posts
+                  </li>
+                  <li>
+                    Built a city-aware shortcode system so Bricks Builder
+                    templates stay reusable across all city pages
+                  </li>
+                  <li>
+                    Implemented LocalBusiness JSON-LD structured data
+                    dynamically generated per city/service page for local SEO
+                  </li>
+                  <li>
+                    Integrated a lead capture system with reCAPTCHA v3, DB
+                    storage, and email notifications
+                  </li>
+                </ul>
+                <div class="flip-back-btns">
+                  <a href="milani-case-study.html" class="flip-btn-cs"
+                    >Read case study →</a
+                  >
+                  <a
+                    href="https://github.com/ap23hp"
+                    target="_blank"
+                    rel="noopener"
+                    class="flip-btn-cs"
+                    >GitHub →</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GTG FLIP CARD -->
+          <div class="proj-card2-wrap reveal d1">
+            <div class="proj-card2-flip" id="flipCard1">
+              <!-- FRONT -->
+              <div class="proj-card2 flip-front-face">
+                <div class="proj-num2">02 · E-commerce UI</div>
+                <h3>GTG Perfumes Landing Page</h3>
+                <p>
+                  Subscription e-commerce landing page for a DTC fragrance
+                  client — 9 cart combinations, dynamic URL builder, image
+                  gallery and accordion. No frameworks, no page builders.
+                  Pixel-matched from Figma.
+                </p>
+                <div class="proj-tags">
+                  <span class="ptag">HTML / CSS</span>
+                  <span class="ptag">JavaScript</span>
+                  <span class="ptag">Figma → Code</span>
+                  <span class="ptag g">Netlify</span>
+                </div>
+                <div class="flip-hint">flip for case study ↷</div>
+              </div>
+              <!-- BACK -->
+              <div class="proj-card2 flip-back-face">
+                <div class="proj-num2">02 · E-commerce UI</div>
+                <h3>What I solved</h3>
+                <ul class="flip-bullets">
+                  <li>
+                    9 cart combinations mapped to dynamic WooCommerce URLs —
+                    zero plugins
+                  </li>
+                  <li>
+                    Subscription expand/collapse via single DOM class toggle
+                  </li>
+                  <li>
+                    Image gallery — arrows, dots and thumbs all synced from one
+                    function
+                  </li>
+                  <li>
+                    3 breakpoints designed from scratch — Figma had desktop only
+                  </li>
+                </ul>
+                <div class="flip-back-btns">
+                  <a href="gtg.html" class="flip-btn-cs">Read case study →</a>
+                  <a
+                    href="https://gtgp.netlify.app/"
+                    target="_blank"
+                    rel="noopener"
+                    class="flip-btn-live"
+                    >↗ Live</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI CHEF FLIP CARD -->
+          <div class="proj-card2-wrap reveal d2">
+            <div class="proj-card2-flip" id="flipCard2">
+              <!-- FRONT -->
+              <div class="proj-card2 flip-front-face">
+                <div class="proj-num2">03 · React App</div>
+                <h3>AI Chef — Recipe Generator</h3>
+                <p>
+                  React app that generates recipes from available ingredients
+                  using an AI API. Component architecture with hooks, state
+                  management, and a serverless backend on Netlify Functions.
+                </p>
+                <div class="proj-tags">
+                  <span class="ptag">React</span>
+                  <span class="ptag">Vite</span>
+                  <span class="ptag">AI API</span>
+                  <span class="ptag g">Hooks</span>
+                  <span class="ptag g">Netlify Functions</span>
+                  <span class="ptag g">Serverless</span>
+                </div>
+                <div class="flip-hint">flip for details ↷</div>
+              </div>
+              <!-- BACK -->
+              <div class="proj-card2 flip-back-face">
+                <div class="proj-num2">03 · React App</div>
+                <h3>What I built</h3>
+                <ul class="flip-bullets">
+                  <li>
+                    Component architecture — Header + Main split into reusable
+                    React components
+                  </li>
+                  <li>
+                    useState hooks managing ingredient list, recipe output, and
+                    loading/error states
+                  </li>
+                  <li>
+                    Serverless backend via Netlify Functions — API key never
+                    exposed to client
+                  </li>
+                  <li>
+                    React Markdown rendering AI-generated recipe output with
+                    custom CSS
+                  </li>
+                </ul>
+                <div class="flip-back-btns">
+                  <a
+                    href="https://ai-chef-react-by-apra.netlify.app/"
+                    target="_blank"
+                    rel="noopener"
+                    class="flip-btn-cs"
+                    >↗ Live site</a
+                  >
+                  <a
+                    href="https://github.com/ap23hp/AI-Chef-React"
+                    target="_blank"
+                    rel="noopener"
+                    class="flip-btn-live"
+                    >GitHub →</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="https://ap23hp.github.io/Weather-App/"
+            target="_blank"
+            rel="noopener"
+            class="proj-card2 reveal d1"
+          >
+            <div class="proj-num2">04 · JavaScript</div>
+            <h3>Weather App</h3>
+            <p>
+              Live weather app with location detection, dynamic UI updates and a
+              clean responsive interface. Deployed on GitHub Pages.
+            </p>
+            <div class="proj-tags">
+              <span class="ptag">JavaScript</span
+              ><span class="ptag g">Weather API</span
+              ><span class="ptag g">GitHub Pages</span>
+            </div>
+            <div
+              class="arr-box"
+              style="margin-top: 16px; align-self: flex-start"
+            >
+              ↗
+            </div>
+          </a>
+
+          <a
+            href="https://tenzies-game-apra.netlify.app/"
+            target="_blank"
+            rel="noopener"
+            class="proj-card2 reveal d2"
+          >
+            <div class="proj-num2">05 · React Game</div>
+            <h3>Tenzies Dice Game</h3>
+            <p>
+              Interactive React dice game with win detection, state management
+              across multiple components and smooth UI animations.
+            </p>
+            <div class="proj-tags">
+              <span class="ptag">React</span
+              ><span class="ptag g">State Management</span
+              ><span class="ptag g">Netlify</span>
+            </div>
+            <div
+              class="arr-box"
+              style="margin-top: 16px; align-self: flex-start"
+            >
+              ↗
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="wrap">
+      <section class="section" id="about">
+        <div class="reveal">
+          <div class="sec-eye">Background</div>
+          <div class="sec-title">About Me</div>
+        </div>
+        <div class="about-new">
+          <div class="about-stats-row reveal">
+            <div class="asc">
+              <div class="asc-num">3+</div>
+              <div class="asc-label">
+                Years of professional development experience
+              </div>
+            </div>
+            <div class="asc">
+              <div class="asc-num">8+</div>
+              <div class="asc-label">
+                Projects built and shipped across web &amp; React
+              </div>
+            </div>
+            <div class="asc">
+              <div class="asc-num">60%</div>
+              <div class="asc-label">
+                Faster city setup time delivered at Milani
+              </div>
+            </div>
+          </div>
+          <div class="about-bottom-row reveal d1">
+            <div class="about-bio">
+              <h3>Hi, I'm Apra 👋</h3>
+              <p>
+                I'm a <strong>Full-Stack WordPress Developer</strong> based in
+                London — I build custom plugin architecture, not just theme
+                installs and plugin configs.
+              </p>
+              <p>
+                My flagship project, <strong>Milani Core</strong>, is a
+                production WordPress plugin with a 3-tier geolocation engine,
+                80+ dynamically generated pages, and custom lead capture — built
+                end-to-end, decisions and all. Earlier, I built
+                <strong>React frontends</strong> at Compunnel for Red Hat's
+                platform, with roots going back to <strong>IBM India</strong>.
+              </p>
+              <p>
+                I've delivered fully remote, cross-border with a Canada-based
+                team — so I know how to own a project independently, with no
+                hand-holding required.
+              </p>
+              <div class="loc-badge">
+                London, UK · Right to work, no sponsorship needed · Open to
+                Hybrid & Remote
+              </div>
+            </div>
+            <div class="about-extras">
+              <div class="about-xcard">
+                <span class="axc-icon">🌍</span>
+                <div class="axc-title">Remote-first experience</div>
+                <div class="axc-text">
+                  Worked cross-border with a Canadian company — async
+                  communication, independent delivery, no hand-holding needed.
+                </div>
+              </div>
+              <div class="about-xcard">
+                <span class="axc-icon">⚡</span>
+                <div class="axc-title">Full ownership mindset</div>
+                <div class="axc-text">
+                  From plugin architecture to frontend polish — I take a brief
+                  and see it through to production without dropping the ball.
+                </div>
+              </div>
+              <div class="about-xcard">
+                <span class="axc-icon">🇬🇧</span>
+                <div class="axc-title">Settled in London</div>
+                <div class="axc-text">
+                  Right to work in the UK with no sponsorship needed — open to
+                  remote, hybrid or office-based roles
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="wrap">
+      <section class="section" id="contact">
+        <div class="contact-band reveal">
+          <div>
+            <h2>Let's build<br /><span>something great.</span></h2>
+            <p>
+              Looking for WordPress Developer or Full-Stack roles in the UK.
+            </p>
+            <p
+              style="
+                margin-top: 12px;
+                font-size: 14px;
+                color: rgba(250, 248, 244, 0.75);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              "
+            >
+              ✉
+              <a
+                href="mailto:apra.khanna2304@gmail.com"
+                style="color: rgba(250, 248, 244, 0.75); text-decoration: none"
+                >apra.khanna2304@gmail.com</a
+              >
+            </p>
+          </div>
+          <div class="contact-btns">
+            <a href="mailto:apra.khanna2304@gmail.com" class="btn-orange"
+              >Send email →</a
+            >
+            <a
+              href="https://github.com/ap23hp"
+              target="_blank"
+              rel="noopener"
+              class="btn-light"
+              >GitHub ↗</a
+            >
+            <a
+              href="https://www.linkedin.com/in/apra-khanna-723a6415a/"
+              target="_blank"
+              rel="noopener"
+              class="btn-light"
+              >LinkedIn ↗</a
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p>© 2026 Apra Khanna</p>
+      </div>
+    </footer>
+
+    <script>
+      const hbg = document.getElementById("hamburger");
+      const navLinks = document.querySelector(".nav-links");
+      hbg.addEventListener("click", function () {
+        const isOpen = navLinks.style.display === "flex";
+        navLinks.style.display = isOpen ? "none" : "flex";
+        navLinks.style.flexDirection = "column";
+        navLinks.style.position = "fixed";
+        navLinks.style.top = "58px";
+        navLinks.style.left = "0";
+        navLinks.style.right = "0";
+        navLinks.style.background = "rgba(250,248,244,0.98)";
+        navLinks.style.padding = "20px 24px";
+        navLinks.style.gap = "4px";
+        navLinks.style.borderBottom = "1.5px solid rgba(208,90,20,0.1)";
+        navLinks.style.zIndex = "99";
       });
-    });
+      document.querySelectorAll(".nav-links a").forEach((a) => {
+        a.addEventListener("click", () => {
+          navLinks.style.display = "none";
+        });
+      });
 
-    function makeFlipCard(id) {
-      const card = document.querySelector(id);
-      if (!card) return;
-      const front = card.querySelector('.flip-front-face');
-      const back  = card.querySelector('.flip-back-face');
+      const skills = [
+        "PHP",
+        "WordPress",
+        "React.js",
+        "JavaScript ES6+",
+        "Google Maps API",
+        "AJAX",
+        "Node.js",
+        "Tailwind CSS",
+        "REST APIs",
+        "Git & GitHub",
+        "Bricks Builder",
+        "Schema.org",
+        "WCAG 2.1",
+        "WP Engine",
+        "Netlify",
+        "Figma",
+      ];
+      const track = document.getElementById("mtrack");
+      const html = [...skills, ...skills]
+        .map(
+          (s) => `<div class="marquee-item"><div class="mdot"></div>${s}</div>`,
+        )
+        .join("");
+      track.innerHTML = html + html;
 
-      function syncHeight() {
-  const isFlipped = card.classList.contains('is-flipped');
-  const active = isFlipped ? back : front;
-  const inactive = isFlipped ? front : back;
+      const reveals = document.querySelectorAll(".reveal");
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("on");
+          });
+        },
+        { threshold: 0.08 },
+      );
+      reveals.forEach((el) => obs.observe(el));
 
-  // measure inactive (hidden) face
-  inactive.style.position = 'static';
-  inactive.style.transform = 'none';
-  inactive.style.visibility = 'hidden';
-  const inactiveH = inactive.offsetHeight;
-  inactive.style.position = '';
-  inactive.style.transform = '';
-  inactive.style.visibility = '';
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const href = a.getAttribute("href");
+          if (href === "#") return;
+          e.preventDefault();
+          const t = document.querySelector(href);
+          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
 
-  // measure active face normally
-  const activeH = active.offsetHeight;
+      function makeFlipCard(id) {
+        const card = document.querySelector(id);
+        if (!card) return;
+        const front = card.querySelector(".flip-front-face");
+        const back = card.querySelector(".flip-back-face");
 
-  const h = isFlipped ? activeH : inactiveH;
-  card.style.height = h + 'px';
-  card.parentElement.style.minHeight = h + 'px';
-}
-      syncHeight();
-      card.addEventListener('click', function(e) {
-        if (e.target.closest('a')) return;
-        this.classList.toggle('is-flipped');
+        function syncHeight() {
+          const isFlipped = card.classList.contains("is-flipped");
+          const active = isFlipped ? back : front;
+          const inactive = isFlipped ? front : back;
+
+          // measure inactive (hidden) face
+          inactive.style.position = "static";
+          inactive.style.transform = "none";
+          inactive.style.visibility = "hidden";
+          const inactiveH = inactive.offsetHeight;
+          inactive.style.position = "";
+          inactive.style.transform = "";
+          inactive.style.visibility = "";
+
+          // measure active face normally
+          const activeH = active.offsetHeight;
+
+          const h = isFlipped ? activeH : inactiveH;
+          card.style.height = h + "px";
+          card.parentElement.style.minHeight = h + "px";
+        }
         syncHeight();
-      });
-    }
+        card.addEventListener("click", function (e) {
+          if (e.target.closest("a")) return;
+          this.classList.toggle("is-flipped");
+          syncHeight();
+        });
+      }
 
-    makeFlipCard('#flipCard0');
-    makeFlipCard('#flipCard1');
-    makeFlipCard('#flipCard2');
-  </script>
-</body>
-
+      makeFlipCard("#flipCard0");
+      makeFlipCard("#flipCard1");
+      makeFlipCard("#flipCard2");
+    </script>
+  </body>
 </html>
