@@ -761,7 +761,6 @@
         overflow: hidden;
       }
 
- 
       .proj-card2:hover {
         border-color: rgba(208, 90, 20, 0.25);
         transform: translateY(-4px);
@@ -880,7 +879,6 @@
         transform: rotateY(0deg);
         justify-content: flex-start;
       }
-    
 
       .proj-card2-flip .flip-back-face {
         transform: rotateY(180deg);
@@ -1284,7 +1282,7 @@
           padding-left: 20px;
           font-size: 16px;
         }
-       
+
         .orbit-wrap {
           width: 220px;
           height: 220px;
@@ -1340,7 +1338,7 @@
         .tl-left {
           padding-left: 20px;
         }
-     
+
         .proj-card2.span2 {
           grid-column: span 1;
           display: flex;
@@ -1387,7 +1385,7 @@
           display: flex;
           flex-direction: column;
         }
-     
+
         .proj-card2-flip .flip-front-face,
         .proj-card2-flip .flip-back-face {
           position: static;
@@ -1395,7 +1393,7 @@
           backface-visibility: visible;
           transition: none;
         }
-        .proj-card2-flip{
+        .proj-card2-flip {
           min-height: 690px;
         }
         .proj-card2-flip .flip-back-face {
@@ -1512,12 +1510,12 @@
           </div>
           <h1 class="hero-name">Apra<br /><span class="hl">Khanna.</span></h1>
           <div class="hero-role-row">
-            <div class="role-pill">Full-Stack <b>WordPress</b> Developer</div>
+            <div class="role-pill">Frontend <b>Developer</b></div>
             <div class="role-loc">📍 London, UK</div>
           </div>
           <p class="hero-desc">
-            3+ years building custom WordPress plugins, React apps &amp; API
-            integrations for global clients.
+            3+ years building React apps &amp; API integrations, plus custom
+            WordPress plugin development for global clients.
           </p>
           <div class="hero-cta">
             <a href="#projects" class="btn-main">See my work →</a>
@@ -1529,10 +1527,13 @@
           <div class="orbit-ring ring2"></div>
           <div class="orbit-outer">
             <div class="icon-node in-orange c-outer" style="top: 0; left: 50%">
-              WP
+              React
             </div>
-            <div class="icon-node in-dark c-outer" style="top: 50%; left: 100%">
-              PHP
+            <div
+              class="icon-node in-orange c-outer"
+              style="top: 50%; left: 100%"
+            >
+              TS
             </div>
             <div
               class="icon-node in-orange c-outer"
@@ -1549,7 +1550,13 @@
               class="icon-node in-light c-inner"
               style="top: 0; left: 50%; font-size: 9px"
             >
-              React
+              WP
+            </div>
+            <div
+              class="icon-node in-dark c-inner"
+              style="top: 50%; left: 100%; font-size: 9px"
+            >
+              PHP
             </div>
             <div class="icon-node in-dark c-inner" style="top: 100%; left: 50%">
               SQL
@@ -1585,26 +1592,26 @@
         <div class="skills-list">
           <div class="skill-row reveal">
             <div class="skill-big-num">01</div>
-            <div class="skill-name">WordPress &amp; PHP</div>
-            <div class="skill-desc">
-              Custom plugins &amp; themes, Bricks Builder, ACF, Gutenberg, CPTs,
-              WP-CLI, Multisite, geolocation rendering
-            </div>
-          </div>
-          <div class="skill-row reveal d1">
-            <div class="skill-big-num">02</div>
             <div class="skill-name">React &amp; JavaScript</div>
             <div class="skill-desc">
               React.js, ES6+, component architecture, hooks, state management,
               DOM manipulation, API integrations
             </div>
           </div>
-          <div class="skill-row reveal d2">
-            <div class="skill-big-num">03</div>
+          <div class="skill-row reveal d1">
+            <div class="skill-big-num">02</div>
             <div class="skill-name">Frontend &amp; UI</div>
             <div class="skill-desc">
               HTML5, CSS3, Tailwind CSS, Bootstrap, responsive / mobile-first
               design, WCAG 2.1 accessibility
+            </div>
+          </div>
+          <div class="skill-row reveal d2">
+            <div class="skill-big-num">03</div>
+            <div class="skill-name">WordPress &amp; PHP</div>
+            <div class="skill-desc">
+              Custom plugins &amp; themes, Bricks Builder, ACF, Gutenberg, CPTs,
+              WP-CLI, Multisite, geolocation rendering
             </div>
           </div>
           <div class="skill-row reveal d1">
@@ -1624,8 +1631,8 @@
             </div>
           </div>
           <div class="skill-row reveal d3">
-            <div class="skill-big-num">06</div>
             <div class="skill-name">Tools &amp; Workflow</div>
+            <div class="skill-big-num">06</div>
             <div class="skill-desc">
               Git, GitHub, Postman, VS Code, Figma, Chrome DevTools, Agile /
               Scrum, remote-first collaboration
@@ -1659,6 +1666,20 @@
                     Worked directly with the Canadian parent company team in BC,
                     gaining hands-on remote-first, cross-border collaboration
                     experience.
+                  </li>
+                  <li>
+                    Wrote JavaScript extensively for dynamic UI behavior —
+                    geolocation detection flow, form validation, and interactive
+                    content rendering across the plugin.
+                  </li>
+                  <li>
+                    Integrated Google Maps API for GPS-based geolocation, with
+                    REST calls for the IP-detection fallback layer.
+                  </li>
+                  <li>
+                    Evaluated and optimized performance for a client's headless
+                    architecture (React frontend + WordPress backend) for a
+                    Canada-based project.
                   </li>
                   <li>
                     Architected a scalable multi-location WordPress system using
@@ -1722,6 +1743,14 @@
                     asynchronously with cross-functional teams on multiple
                     dashboard interfaces.
                   </li>
+                  <li>
+                    Applied Material Design and WCAG accessibility principles
+                    across components.
+                  </li>
+                  <li>
+                    Wrote unit tests using Jest and Enzyme; tracked work via
+                    Jira.
+                  </li>
                 </ul>
               </div>
             </div>
@@ -1779,18 +1808,11 @@
         </div>
         <div class="proj-grid2">
           <!-- MILANI FLIP CARD -->
-          <div
-            class="proj-card2-wrap reveal"
-       
-          >
-            <div
-              class="proj-card2-flip"
-              id="flipCard0"
-         
-            >
+          <div class="proj-card2-wrap reveal">
+            <div class="proj-card2-flip" id="flipCard0">
               <!-- FRONT -->
               <div class="proj-card2 flip-front-face">
-                <div class="proj-num2">01 · WordPress Plugin</div>
+              <div class="proj-num2">01 · Full-Stack Web System</div>
                 <h3>Milani Core — City Routing Plugin</h3>
                 <p>
                   Milani Core is a custom WordPress plugin built for Milani
@@ -1805,13 +1827,14 @@
                   and service page
                 </p>
                 <div class="proj-tags">
+                    <span class="ptag">JavaScript</span>
                   <span class="ptag">PHP</span
                   ><span class="ptag">WordPress</span
                   ><span class="ptag">Google Maps API</span
                   ><span class="ptag">AJAX</span>
-                  <span class="ptag g">Custom CPTs</span
-                  ><span class="ptag g">Schema.org</span
-                  ><span class="ptag g">MySQL</span>
+                  <span class="ptag ">Custom CPTs</span
+                  ><span class="ptag ">Schema.org</span
+                  ><span class="ptag ">MySQL</span>
                 </div>
                 <div class="flip-hint">flip for details ↷</div>
               </div>
@@ -1882,7 +1905,7 @@
                   <span class="ptag">HTML / CSS</span>
                   <span class="ptag">JavaScript</span>
                   <span class="ptag">Figma → Code</span>
-                  <span class="ptag g">Netlify</span>
+                  <span class="ptag ">Netlify</span>
                 </div>
                 <div class="flip-hint">flip for case study ↷</div>
               </div>
@@ -1936,9 +1959,9 @@
                   <span class="ptag">React</span>
                   <span class="ptag">Vite</span>
                   <span class="ptag">AI API</span>
-                  <span class="ptag g">Hooks</span>
-                  <span class="ptag g">Netlify Functions</span>
-                  <span class="ptag g">Serverless</span>
+                  <span class="ptag ">Hooks</span>
+                  <span class="ptag ">Netlify Functions</span>
+                  <span class="ptag ">Serverless</span>
                 </div>
                 <div class="flip-hint">flip for details ↷</div>
               </div>
@@ -1998,8 +2021,8 @@
             </p>
             <div class="proj-tags">
               <span class="ptag">JavaScript</span
-              ><span class="ptag g">Weather API</span
-              ><span class="ptag g">GitHub Pages</span>
+              ><span class="ptag ">Weather API</span
+              ><span class="ptag ">GitHub Pages</span>
             </div>
             <div
               class="arr-box"
@@ -2023,8 +2046,8 @@
             </p>
             <div class="proj-tags">
               <span class="ptag">React</span
-              ><span class="ptag g">State Management</span
-              ><span class="ptag g">Netlify</span>
+              ><span class="ptag ">State Management</span
+              ><span class="ptag ">Netlify</span>
             </div>
             <div
               class="arr-box"
@@ -2087,7 +2110,7 @@
                 hand-holding required.
               </p>
               <div class="loc-badge">
-                London, UK · Right to work, No sponsorship needed 
+                London, UK · Right to work, No sponsorship needed
               </div>
             </div>
           </div>
@@ -2172,10 +2195,11 @@
       });
 
       const skills = [
+        "React.js",
+        "TypeScript",
+        "JavaScript ES6+",
         "PHP",
         "WordPress",
-        "React.js",
-        "JavaScript ES6+",
         "Google Maps API",
         "AJAX",
         "Node.js",
