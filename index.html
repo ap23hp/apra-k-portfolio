@@ -741,247 +741,423 @@
       }
 
       /* PROJECTS */
-      .proj-grid2 {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
+      .projects-section {
+        padding: 40px 0;
       }
 
-      .proj-card2 {
-        background: var(--white);
-        border: 1.5px solid var(--border);
-        border-radius: 16px;
-        padding: 28px 26px;
-        text-decoration: none;
-        color: inherit;
-        transition: all 0.25s;
+      .project-showcase {
         display: flex;
         flex-direction: column;
-        position: relative;
+        gap: 20px;
+      }
+
+      /* ---------- FEATURED PROJECT ---------- */
+
+      .project-feature {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--dark);
+        color: var(--bg);
+        border-radius: 16px;
         overflow: hidden;
       }
 
-      .proj-card2:hover {
-        border-color: rgba(208, 90, 20, 0.25);
-        transform: translateY(-4px);
-        box-shadow: 0 16px 40px rgba(208, 90, 20, 0.12);
-      }
-
-      .proj-card2:hover .arr-box {
-        background: var(--orange);
-        transform: rotate(-8deg);
-      }
-
-      .proj-num2 {
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--orange);
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .proj-num2::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: rgba(208, 90, 20, 0.18);
-        max-width: 40px;
-      }
-
-      .proj-card2 h3 {
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--dark);
-        letter-spacing: -0.4px;
-        margin-bottom: 10px;
-        line-height: 1.2;
-      }
-
-      .proj-card2 p {
-        font-size: 18px;
-        color: #3a3028;
-        line-height: 1.65;
-        flex: 1;
-      }
-
-      .proj-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-top: 14px;
-      }
-
-      .ptag {
-        font-size: 11px;
-        font-weight: 600;
-        padding: 4px 10px;
-        border-radius: 100px;
-        background: rgba(208, 90, 20, 0.08);
-        color: #b84d10;
-        border: 1px solid rgba(208, 90, 20, 0.15);
-      }
-
-      .ptag.g {
-        background: rgba(26, 18, 8, 0.04);
-        color: var(--muted);
-        border-color: rgba(26, 18, 8, 0.08);
-      }
-
-      .arr-box {
-        width: 40px;
-        height: 40px;
+      .project-feature-image {
+        position: relative;
+        min-height: 260px;
+        overflow: hidden;
         background: var(--dark);
-        color: var(--bg);
-        border-radius: 10px;
+        border-bottom: 1px solid rgba(250, 248, 244, 0.08);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
-        flex-shrink: 0;
-        transition: all 0.2s;
+        padding: 22px;
       }
 
-      /* FLIP CARD */
-      .proj-card2-wrap {
-        min-height: 320px;
-      }
-
-      .proj-card2-flip {
+      .project-feature-image img {
         position: relative;
         width: 100%;
-        height: 100%;
-        min-height: 390px;
-        perspective: 1000px;
-        cursor: pointer;
-        transform-style: preserve-3d;
+        
+        object-fit: fill;
+        object-position: top center;
+        display: block;
+        border-radius: 8px;
+        transition: transform 0.5s ease;
       }
 
-      .proj-card2-flip .flip-front-face,
-      .proj-card2-flip .flip-back-face {
+      .project-feature:hover .project-feature-image img {
+        transform: scale(1.03);
+      }
+
+      .project-feature-placeholder {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        min-height: 100%;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: rgba(250, 248, 244, 0.35);
+        text-align: center;
+        padding: 16px;
+      }
+
+      .project-feature-badge {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        padding: 7px 13px;
+        border-radius: 999px;
+        background: var(--orange);
+        color: var(--dark);
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        z-index: 1;
+      }
+
+      .project-feature-content {
+        padding: 34px 32px;
         display: flex;
         flex-direction: column;
-        padding-bottom: 28px;
+        justify-content: center;
+        background: var(--white);
       }
 
-      .proj-card2-flip .flip-front-face {
-        transform: rotateY(0deg);
-        justify-content: flex-start;
+      .project-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 14px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--orange);
       }
 
-      .proj-card2-flip .flip-back-face {
-        transform: rotateY(180deg);
-        background: var(--dark);
-        border-color: rgba(208, 90, 20, 0.35);
+      .project-feature-content h3 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin: 0 0 12px;
+        color: var(--dark);
       }
 
-      .proj-card2-flip.is-flipped .flip-front-face {
-        transform: rotateY(-180deg);
-      }
-      .proj-card2-flip.is-flipped .flip-back-face {
-        transform: rotateY(0deg);
+      .project-feature-content p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--muted);
+        margin: 0 0 18px;
       }
 
-      .flip-hint {
+      /* ---------- TECH TAGS ---------- */
+
+      .project-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+
+      .project-stack span {
+        padding: 5px 10px;
+        border: 1px solid rgba(208, 90, 20, 0.18);
+        border-radius: 999px;
+        font-size: 10.5px;
+        line-height: 1;
+        white-space: nowrap;
+        color: #b84d10;
+        background: rgba(208, 90, 20, 0.06);
+      }
+
+      /* ---------- BUTTONS ---------- */
+
+      .project-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
         margin-top: auto;
-        padding-top: 12px;
-        font-size: 11px;
-        color: var(--orange);
-        font-weight: 500;
-        opacity: 0.7;
-      }
-
-      .flip-back-face h3 {
-        color: var(--bg) !important;
-      }
-      .flip-back-face .proj-num2 {
-        color: rgba(208, 90, 20, 0.7);
-      }
-      .flip-back-face .proj-num2::after {
-        background: rgba(208, 90, 20, 0.2);
-      }
-
-      .flip-bullets {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .flip-bullets li {
-        font-size: 13px;
-        color: rgba(250, 248, 244, 0.65);
-        line-height: 1.55;
-        padding-left: 18px;
-        position: relative;
-        font-weight: 400;
-      }
-
-      .flip-bullets li::before {
-        content: "→";
-        position: absolute;
-        left: 0;
-        color: var(--orange);
-        font-size: 11px;
-        top: 2px;
-      }
-
-      .flip-back-btns {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
         flex-wrap: wrap;
       }
 
-      .flip-btn-cs {
+      .project-btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 999px;
         background: var(--orange);
-        color: #fff;
-        padding: 10px 18px;
-        border-radius: 8px;
+        color: var(--dark);
         text-decoration: none;
-        font-size: 13px;
+        font-size: 12.5px;
+        font-weight: 700;
+        transition: transform 0.2s ease;
+      }
+
+      .project-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .project-link {
+        color: inherit;
+        text-decoration: none;
+        font-size: 12.5px;
         font-weight: 600;
-        transition: all 0.2s;
-        box-shadow: 0 4px 16px rgba(208, 90, 20, 0.35);
+        opacity: 0.75;
+        transition: opacity 0.2s ease;
       }
 
-      .flip-btn-cs:hover {
-        background: #b84d10;
-        transform: translateY(-1px);
+      .project-link:hover {
+        opacity: 1;
       }
 
-      .flip-btn-live {
-        display: inline-flex;
+      .project-feature-content .project-link {
+        color: var(--dark);
+      }
+
+      /* ---------- PROJECT GRID ---------- */
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .project-card {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(208, 90, 20, 0.3);
+        box-shadow: 0 16px 36px rgba(208, 90, 20, 0.1);
+      }
+
+      .project-card-image {
+        position: relative;
+        height: 190px;
+        overflow: hidden;
+        background: var(--dark);
+        border-bottom: 1.5px solid var(--border);
+        display: flex;
         align-items: center;
-        background: rgba(250, 248, 244, 0.08);
-        color: rgba(250, 248, 244, 0.75);
-        padding: 10px 18px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 13px;
-        font-weight: 500;
-        border: 1px solid rgba(250, 248, 244, 0.12);
-        transition: all 0.2s;
+        justify-content: center;
+        padding: 16px;
       }
 
-      .flip-btn-live:hover {
-        background: rgba(250, 248, 244, 0.14);
+      .project-card-image img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        border-radius: 6px;
+        transition: transform 0.5s ease;
+      }
+
+      .project-card:hover .project-card-image img {
+        transform: scale(1.03);
+      }
+
+      .project-card-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: rgba(250, 248, 244, 0.35);
+        text-align: center;
+        padding: 14px;
+      }
+
+      .project-card-content {
+        padding: 22px;
+      }
+
+      .project-card .project-meta {
+        margin-bottom: 12px;
+      }
+
+      .project-card-content h3 {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: var(--dark);
+        margin: 0 0 10px;
+      }
+
+      .project-card-content p {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .project-card .project-stack {
+        margin-bottom: 16px;
+      }
+
+      .project-card .project-stack span {
+        border-color: rgba(208, 90, 20, 0.18);
+        color: #b84d10;
+        background: rgba(208, 90, 20, 0.06);
+      }
+
+      .project-card .project-btn {
+        color: #fff;
+      }
+
+      .project-card .project-link {
+        color: var(--dark);
+      }
+
+      /* ---------- OTHER PROJECTS ---------- */
+
+      .other-projects {
+        margin-top: 36px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 30px;
+        align-items: start;
+      }
+
+      .other-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--orange);
+        margin-bottom: 8px;
+      }
+
+      .other-projects h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -0.3px;
+        color: var(--dark);
+      }
+
+      .other-project-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .other-project-links a {
+        display: grid;
+        grid-template-columns: 52px 1fr auto;
+        align-items: center;
+        gap: 2px 14px;
+        padding: 12px;
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        text-decoration: none;
+        color: inherit;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .other-thumb {
+        grid-row: span 2;
+        width: 52px;
+        height: 52px;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        background: var(--dark);
+        flex-shrink: 0;
+      }
+
+      .other-thumb img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+
+      .other-thumb-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 7px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: rgba(250, 248, 244, 0.35);
+        text-align: center;
+        padding: 2px;
+      }
+
+      .other-project-links a:hover {
+        background: var(--dark);
         color: var(--bg);
+        border-color: var(--dark);
+        transform: translateY(-2px);
+      }
+
+      .other-project-links span {
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .other-project-links small {
+        font-size: 11px;
+        opacity: 0.55;
+      }
+
+      .other-project-links b {
+        grid-row: span 2;
+        font-size: 16px;
+        color: var(--orange);
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+
+      @media (max-width: 700px) {
+        .project-feature {
+          grid-template-columns: 1fr;
+        }
+        .project-feature-image {
+          height: 220px;
+          min-height: 220px;
+        }
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+        .other-projects {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .other-project-links {
+          grid-template-columns: 1fr;
+        }
       }
 
       /* ABOUT */
@@ -1490,7 +1666,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
           <li>
-            <a href="ApraK_frontendDev__.pdf" download class="nav-cv"
+            <a href="apraK_FullStack_automation.pdf" download class="nav-cv"
               >Download Resume</a
             >
           </li>
@@ -1508,17 +1684,40 @@
               >· UK right to work, No sponsorship needed
             </span>
           </div>
-          <h1 class="hero-name">Apra<br /><span class="hl">Khanna.</span></h1>
-          <div class="hero-role-row">
-            <div class="role-pill">Frontend <b>Developer</b></div>
-            <div class="role-loc">📍 London, UK</div>
-          </div>
+   <h1 class="hero-name">Apra<br /><span class="hl">Khanna.</span></h1>
+
+<div class="hero-role-row">
+  <div class="role-pill">Software <b>Engineer</b></div>
+  <div class="role-loc">📍 London, UK</div>
+</div>
+
+<p
+  style="
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--orange);
+    margin: -14px 0 14px;
+  "
+>
+  Full-Stack · AI · Automation
+</p>
           <p class="hero-desc">
-            3+ years building React apps &amp; API integrations, plus custom
-            WordPress plugin development for global clients.
+           <p class="hero-desc">
+  Software Engineer with experience building frontend and backend systems
+  using React, TypeScript, Node.js, PHP and APIs. I also build AI-powered
+  automation and GTM workflows, connecting data, business logic and CRM
+  systems to turn real-world requirements into practical software.
+</p>
           </p>
           <div class="hero-cta">
-            <a href="#projects" class="btn-main">See my work →</a>
+      
+            <a
+              href="https://github.com/ap23hp"
+              target="_blank"
+              rel="noopener"
+              class="btn-out"
+              >GitHub</a
+            >
             <a href="#contact" class="btn-out">Let's talk</a>
           </div>
         </div>
@@ -1546,26 +1745,28 @@
             </div>
           </div>
           <div class="orbit-inner">
-  <div
-    class="icon-node in-light c-inner"
-    style="top: 0; left: 50%; font-size: 11px"
-  >
-    WP
-  </div>
-  <div
-    class="icon-node in-dark c-inner"
-    style="top: 50%; left: 100%; font-size: 11px"
-  >
-    PHP
-  </div>
-  <div class="icon-node in-dark c-inner" style="top: 100%; left: 50%">SQL</div>
-  <div
-    class="icon-node in-orange c-inner"
-    style="top: 50%; left: 0%; font-size: 11px"
-  >
-    Next
-  </div>
-</div>
+            <div
+              class="icon-node in-light c-inner"
+              style="top: 0; left: 50%; font-size: 11px"
+            >
+              WP
+            </div>
+            <div
+              class="icon-node in-dark c-inner"
+              style="top: 50%; left: 100%; font-size: 11px"
+            >
+              PHP
+            </div>
+            <div class="icon-node in-dark c-inner" style="top: 100%; left: 50%">
+              SQL
+            </div>
+            <div
+              class="icon-node in-orange c-inner"
+              style="top: 50%; left: 0%; font-size: 11px"
+            >
+              Next
+            </div>
+          </div>
           <div class="photo-circle">
             <img
               src="apra.jpg.jpeg"
@@ -1596,41 +1797,41 @@
         <div class="skills-list">
           <div class="skill-row reveal">
             <div class="skill-big-num">01</div>
-            <div class="skill-name">React &amp; JavaScript</div>
+            <div class="skill-name">GTM &amp; Automation</div>
             <div class="skill-desc">
-              React.js, ES6+, component architecture, hooks, state management,
-              DOM manipulation, API integrations
+              Clay, n8n, HubSpot API, webhook-driven workflows, ICP scoring,
+              lead enrichment, CRM automation
             </div>
           </div>
           <div class="skill-row reveal d1">
             <div class="skill-big-num">02</div>
-            <div class="skill-name">Frontend &amp; UI</div>
+            <div class="skill-name">AI &amp; Data</div>
             <div class="skill-desc">
-              HTML5, CSS3, Tailwind CSS, Bootstrap, responsive / mobile-first
-              design, WCAG 2.1 accessibility
+              Claude API, LLM workflows, structured outputs, validation, JSON
+              transformation, prompt design
             </div>
           </div>
           <div class="skill-row reveal d2">
             <div class="skill-big-num">03</div>
-            <div class="skill-name">WordPress &amp; PHP</div>
+            <div class="skill-name">Backend &amp; Integrations</div>
             <div class="skill-desc">
-              Custom plugins &amp; themes, Bricks Builder, ACF, Gutenberg, CPTs,
-              WP-CLI, Multisite, geolocation rendering
+              Node.js, Express, TypeScript, JavaScript, REST APIs, PostgreSQL,
+              AJAX, Companies House API
             </div>
           </div>
           <div class="skill-row reveal d1">
             <div class="skill-big-num">04</div>
-            <div class="skill-name">Backend &amp; Database</div>
+            <div class="skill-name">Web</div>
             <div class="skill-desc">
-              Node.js, Express.js, REST APIs, SQLite, SQL, custom DB tables,
-              JSON-LD / Schema.org structured data
+              React.js, WordPress &amp; PHP (custom plugins, Bricks Builder,
+              CPTs, geolocation rendering), HTML5, CSS3
             </div>
           </div>
           <div class="skill-row reveal d2">
             <div class="skill-big-num">05</div>
             <div class="skill-name">Performance &amp; SEO</div>
             <div class="skill-desc">
-              Core Web Vitals, PageSpeed optimisation, Yoast SEO, Schema markup,
+              Core Web Vitals, PageSpeed optimisation, Schema markup,
               cross-browser compatibility
             </div>
           </div>
@@ -1638,8 +1839,8 @@
             <div class="skill-big-num">06</div>
             <div class="skill-name">Tools &amp; Workflow</div>
             <div class="skill-desc">
-              Git, GitHub, Postman, VS Code, Figma, Chrome DevTools, Agile /
-              Scrum, remote-first collaboration
+              Git, GitHub, Postman, Google Tag Manager, Google Conversions API,
+              Figma, remote-first collaboration
             </div>
           </div>
         </div>
@@ -1664,12 +1865,31 @@
                 </div>
               </div>
               <div class="tl-right">
-                <div class="tl-role">Frontend Web Developer</div>
+                <div class="tl-role">Full Stack Web Developer</div>
                 <ul class="tl-bullets">
                   <li>
+                    Built a custom backend lead-capture system with admin
+                    dashboard, form validation, and email notifications,
+                    persisting enquiries to a custom database table.
+                  </li>
+                  <li>
+                    Integrated Google Tag Manager &amp; the Conversions API for
+                    lead attribution and conversion tracking across 12 cities.
+                  </li>
+                  <li>
                     Worked directly with the Canadian parent company team in BC,
-                    gaining hands-on remote-first, cross-border collaboration
-                    experience.
+                    gaining hands-on remote-first, cross-border stakeholder
+                    collaboration experience.
+                  </li>
+                  <li>
+                    Built custom WordPress plugin (4,000+ lines of PHP) with
+                    intelligent URL rewrite rules enabling 100+ service pages
+                    without manual creation.
+                  </li>
+                  <li>
+                    Engineered a 3-tier geolocation fallback chain (GPS → IP →
+                    postal code) to automate content routing across cities,
+                    reducing new-city setup time by an estimated 60%.
                   </li>
                   <li>
                     Wrote JavaScript extensively for dynamic UI behavior —
@@ -1677,36 +1897,13 @@
                     content rendering across the plugin.
                   </li>
                   <li>
-                    Integrated Google Maps API for GPS-based geolocation, with
-                    REST calls for the IP-detection fallback layer.
-                  </li>
-                  <li>
                     Evaluated and optimized performance for a client's headless
                     architecture (React frontend + WordPress backend) for a
                     Canada-based project.
                   </li>
                   <li>
-                    Architected a scalable multi-location WordPress system using
-                    Bricks Builder — reduced new-city setup time by an estimated
-                    60%.
-                  </li>
-                  <li>
-                    Engineered geolocation-based content rendering (GPS → IP →
-                    postal code fallback) to personalise UX dynamically for
-                    regional audiences.
-                  </li>
-                  <li>
-                    Built custom WordPress plugin (4,000+ lines of PHP) with
-                    intelligent URL rewrite rules enabling 80+ service pages
-                    without manual creation
-                  </li>
-                  <li>
-                    Built a custom WordPress plugin to automate dynamic content
-                    management and eliminate reliance on third-party plugins.
-                  </li>
-                  <li>
                     Implemented JSON-LD structured data (LocalBusiness, Service,
-                    BreadcrumbList) optimized for Google Local Pack rankings
+                    BreadcrumbList) optimized for Google Local Pack rankings.
                   </li>
                   <li>
                     Optimized Core Web Vitals: 57% LCP improvement (4.2s →
@@ -1714,16 +1911,8 @@
                     improvement (0.15 → 0.04)
                   </li>
                   <li>
-                    Integrated Google Tag Manager & Conversion API for lead
-                    attribution tracking across 12 cities
-                  </li>
-                  <li>
-                    Built custom lead capture system with admin dashboard, form
-                    validation, and email notifications
-                  </li>
-                  <li>
                     Deployed fully customized website to production
-                    (milanielectric.com) — live with international clients
+                    (milanielectric.com) — live with international clients.
                   </li>
                 </ul>
               </div>
@@ -1735,34 +1924,30 @@
                 <div class="tl-company">Compunnel Software Group, Inc.</div>
               </div>
               <div class="tl-right">
-                <div class="tl-role">Software Developer — React / Frontend</div>
+                <div class="tl-role">Software Developer — Frontend</div>
                 <ul class="tl-bullets">
                   <li>
-                    Built and enhanced reusable React.js UI components for Red
-                    Hat's client-facing eBook platform, implementing WCAG 2.1
-                    a11y standards.
+                    Built and enhanced reusable TypeScript/React components for
+                    Red Hat's client-facing platform, working with structured,
+                    API-driven data across interconnected dashboard views.
                   </li>
                   <li>
-                    Diagnosed and resolved complex UI bugs and collaborated
-                    asynchronously with cross-functional teams on multiple
-                    dashboard interfaces.
+                    Queried and consumed REST/API data, transformed JSON
+                    objects, and mapped data into reusable application workflows
+                    using Redux across a large, interconnected codebase.
                   </li>
                   <li>
-                    Worked with Redux for state management across a large
-                    codebase with multiple interconnected dashboard interfaces.
+                    Diagnosed complex UI and data-flow issues — including a
+                    bookmarking feature bug — and collaborated with stakeholders
+                    across testers, designers, and project managers to deliver
+                    fixes and features.
                   </li>
                   <li>
-                    Diagnosed and resolved complex UI bugs — including a
-                    bookmarking feature issue — and collaborated asynchronously
-                    with testers, designers, and project managers on multiple
-                    dashboard interfaces.
+                    Applied WCAG 2.1 accessibility standards and Material Design
+                    principles across client-facing components.
                   </li>
                   <li>
-                    Applied Material Design and WCAG accessibility principles
-                    across components.
-                  </li>
-                  <li>
-                    Wrote unit tests using Jest and Enzyme; tracked work via
+                    Wrote unit tests using Jest and Enzyme; tracked delivery via
                     Jira.
                   </li>
                 </ul>
@@ -1795,6 +1980,33 @@
 
             <div class="tl-item reveal d3">
               <div class="tl-left">
+                <div class="tl-period">Mar 2018 – Mar 2019</div>
+                <div class="tl-company">Channelplay Limited</div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-role">Program Associate</div>
+                <ul class="tl-bullets">
+                  <li>
+                    Managed client projects for global retail brands including
+                    Adidas and Hublot, coordinating mystery-audit and
+                    retail-execution activities across multiple locations.
+                  </li>
+                  <li>
+                    Coordinated with external auditors and retail participants
+                    to schedule assignments, building experience communicating
+                    with external stakeholders and managing follow-ups.
+                  </li>
+                  <li>
+                    Collected and consolidated audit data in Excel, identified
+                    recurring operational issues, and translated findings into
+                    client-facing reports and presentation decks.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tl-item reveal d3">
+              <div class="tl-left">
                 <div class="tl-period">Jun 2016 – Jul 2016</div>
                 <div class="tl-company">IBM India Pvt. Ltd.</div>
               </div>
@@ -1813,385 +2025,260 @@
       </div>
     </div>
 
-    <!-- PROJECTS -->
+    <!-- ================= PROJECTS ================= -->
     <div class="wrap">
-      <section class="section" id="projects">
+      <section class="projects-section" id="projects">
         <div class="reveal">
           <div class="sec-eye">Selected work</div>
-          <div class="sec-title">Projects</div>
+          <div class="sec-title">Projects that solve real problems.</div>
         </div>
-        <div class="proj-grid2">
-          <!-- EYECARE CONNECT FLIP CARD -->
-<div class="proj-card2-wrap reveal">
-  <div class="proj-card2-flip" id="flipCard0">
-    <!-- FRONT -->
-    <div class="proj-card2 flip-front-face">
-      <div class="proj-num2">01 · Full-Stack Clinic Website with Appointment Booking</div>
-      <h3>EyeCare Connect — Doctor Appointment Booking</h3>
-      <p>
-        Full-stack clinic booking platform built end-to-end with Next.js and
-        TypeScript. Multi-step appointment booking flow, responsive design,
-        and email notifications via a serverless API integration.
-      </p>
-      <div class="proj-tags">
-        <span class="ptag">Next.js</span>
-        <span class="ptag">TypeScript</span>
-        <span class="ptag">Tailwind CSS</span>
-        <span class="ptag">Resend API</span>
-        <span class="ptag">Vercel</span>
+
+        <div class="project-showcase">
+
+          <!-- FEATURED PROJECT -->
+          <article class="project-feature">
+            <div class="project-feature-image">
+              <div class="project-feature-placeholder">gtm1.png</div>
+              <img src="gtm1.png" alt="GTM Account Research Engine" loading="lazy" onerror="this.style.display='none'" />
+              <div class="project-feature-badge">Featured Project</div>
+            </div>
+
+            <div class="project-feature-content">
+              <div class="project-meta">
+                <span>01</span>
+                <span>AI · Automation · Full-Stack</span>
+              </div>
+
+              <h3>GTM Account Research Engine</h3>
+
+              <p>
+                An end-to-end full-stack GTM application that verifies UK companies,
+                scores ICP fit, researches hiring and funding signals with Claude,
+                generates evidence-backed sales briefs and connects qualified
+                accounts with CRM workflows.
+              </p>
+
+              <div class="project-stack">
+                <span>Node.js</span>
+                <span>TypeScript</span>
+                <span>PostgreSQL</span>
+                <span>Claude</span>
+                <span>Companies House</span>
+                <span>Clay</span>
+                <span>n8n</span>
+                <span>HubSpot</span>
+              </div>
+
+              <div class="project-actions">
+                <a href="https://frontend-apra-k.vercel.app/" target="_blank" rel="noopener" class="project-btn">Live Demo ↗</a>
+                <a href="https://github.com/ap23hp/gtm-account-research-engine" target="_blank" rel="noopener" class="project-link">GitHub ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT GRID -->
+          <div class="project-grid">
+
+            <!-- MILANI -->
+            <article class="project-card">
+              <div class="project-card-image">
+                <div class="project-card-placeholder">MilaniElectric.png</div>
+                <img src="MilaniElectric.png" alt="Milani Core" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+              <div class="project-card-content">
+                <div class="project-meta">
+                  <span>02</span>
+                  <span>Full-Stack · Production</span>
+                </div>
+                <h3>Milani Core</h3>
+                <p>
+                  Custom full-stack WordPress system with backend lead capture,
+                  database persistence, conversion tracking, geolocation routing
+                  and 100+ programmatic service and city pages.
+                </p>
+                <div class="project-stack">
+                  <span>PHP</span>
+                  <span>WordPress</span>
+                  <span>JavaScript</span>
+                  <span>MySQL</span>
+                  <span>GTM</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://milanielec1dev.wpenginepowered.com/vancouver/" target="_blank" rel="noopener" class="project-btn">Live Site ↗</a>
+                  <a href="milani-case-study.html" class="project-link">Case Study →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- EYECARE -->
+            <article class="project-card">
+              <div class="project-card-image">
+                <div class="project-card-placeholder">EyeCareConnect.png</div>
+                <img src="EyeCareConnect.png" alt="EyeCare Connect" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+              <div class="project-card-content">
+                <div class="project-meta">
+                  <span>03</span>
+                  <span>Full-Stack · React</span>
+                </div>
+                <h3>EyeCare Connect</h3>
+                <p>
+                  Full-stack healthcare platform focused on appointment booking,
+                  user flows and API-driven application functionality.
+                </p>
+                <div class="project-stack">
+                  <span>React</span>
+                  <span>TypeScript</span>
+                  <span>Next.js</span>
+                  <span>APIs</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://eyecare-connect-b8anc9b97-apra-k.vercel.app/" target="_blank" rel="noopener" class="project-btn">Live Demo ↗</a>
+                  <a href="https://github.com/ap23hp/eyecare-connect" target="_blank" rel="noopener" class="project-link">GitHub ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- AI CHEF -->
+            <article class="project-card">
+              <div class="project-card-image">
+                <div class="project-card-placeholder">ai-chef.png</div>
+                <img src="ai-chef.png" alt="AI Chef" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+              <div class="project-card-content">
+                <div class="project-meta">
+                  <span>04</span>
+                  <span>AI · API</span>
+                </div>
+                <h3>AI Chef</h3>
+                <p>
+                  AI-powered recipe application that turns ingredients into
+                  personalised recipe suggestions through an API-driven React
+                  interface.
+                </p>
+                <div class="project-stack">
+                  <span>React</span>
+                  <span>JavaScript</span>
+                  <span>AI API</span>
+                  <span>Netlify Functions</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://ai-chef-react-by-apra.netlify.app/" target="_blank" rel="noopener" class="project-btn">Live Demo ↗</a>
+                  <a href="https://github.com/ap23hp/AI-Chef-React" target="_blank" rel="noopener" class="project-link">GitHub ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- GTG -->
+            <article class="project-card">
+              <div class="project-card-image">
+                <div class="project-card-placeholder">GTGPerfumes.png</div>
+                <img src="GTGPerfumes.png" alt="GTG Perfumes" loading="lazy" onerror="this.style.display='none'" />
+              </div>
+              <div class="project-card-content">
+                <div class="project-meta">
+                  <span>05</span>
+                  <span>Frontend · E-Commerce</span>
+                </div>
+                <h3>GTG Perfumes</h3>
+                <p>
+                  Responsive e-commerce experience focused on polished UI,
+                  product presentation and conversion-oriented frontend design.
+                </p>
+                <div class="project-stack">
+                  <span>HTML</span>
+                  <span>CSS</span>
+                  <span>JavaScript</span>
+                  <span>Responsive UI</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://gtgp.netlify.app/" target="_blank" rel="noopener" class="project-btn">Live Site ↗</a>
+                  <a href="gtg.html" class="project-link">Case Study →</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- OTHER PROJECTS -->
+          <div class="other-projects">
+            <div>
+              <span class="other-label">Other Projects</span>
+              <h3>More things I've built.</h3>
+            </div>
+
+            <div class="other-project-links">
+              <a href="https://ap23hp.github.io/Weather-App/" target="_blank" rel="noopener">
+                <div class="other-thumb">
+                  <div class="other-thumb-placeholder">weather-app.png</div>
+                  <img src="weather-app.png" alt="Weather App" loading="lazy" onerror="this.style.display='none'" />
+                </div>
+                <span>Weather App</span>
+                <small>JavaScript · API</small>
+                <b>↗</b>
+              </a>
+              <a href="https://tenzies-game-apra.netlify.app/" target="_blank" rel="noopener">
+                <div class="other-thumb">
+                  <div class="other-thumb-placeholder">tenzies-game.png</div>
+                  <img src="tenzies-game.png" alt="Tenzies Game" loading="lazy" onerror="this.style.display='none'" />
+                </div>
+                <span>Tenzies Game</span>
+                <small>React · JavaScript</small>
+                <b>↗</b>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+   <!-- ABOUT -->
+<div class="wrap">
+  <section class="section" id="about">
+    <div class="reveal">
+      <div class="sec-eye">Background</div>
+      <div class="sec-title">About Me</div>
+    </div>
+
+    <div class="about-new">
+     
+      <div class="about-bottom-row reveal d1">
+        <div class="about-bio">
+          <h3>Hi, I'm Apra 👋</h3>
+
+          <p>
+            I'm a software engineer who enjoys building products and systems
+            across the stack — from <strong>React and TypeScript</strong>
+            interfaces to <strong>Node.js, APIs, databases and backend
+            integrations</strong>.
+          </p>
+
+          <p>
+            I've worked on client-facing platforms, production websites and
+            custom backend systems, often taking projects from requirements
+            through development and deployment. Along the way, I've also
+            worked closely with stakeholders, translated business needs into
+            technical solutions and built systems designed around real users,
+            leads and business outcomes.
+          </p>
+
+          <p>
+            More recently, I've been extending that engineering foundation into
+            <strong>AI and automation</strong> — building workflows that connect
+            APIs, data enrichment, business logic and CRM systems. My GTM
+            account research project brings these skills together using
+            <strong>Claude, Clay, n8n, Companies House and HubSpot</strong>.
+          </p>
+
+          <div class="loc-badge">
+            London, UK · Right to work · No sponsorship needed
+          </div>
+        </div>
       </div>
-      <div class="flip-hint">flip for details ↷</div>
     </div>
-    <!-- BACK -->
-    <div class="proj-card2 flip-back-face">
-      <div class="proj-num2">01 · Full-Stack Booking App</div>
-      <h3>What I built</h3>
-      <ul class="flip-bullets">
-        <li>
-          Multi-step booking flow (type → date/time → details → confirm)
-          driven by a useReducer state machine
-        </li>
-        <li>
-          Fully responsive, mobile-first design with a custom Tailwind
-          design system
-        </li>
-        <li>
-          Next.js API routes handling contact and booking form submissions
-        </li>
-        <li>
-          Email notifications on booking and contact submission via the
-          Resend API
-        </li>
-        <li>Deployed on Vercel with environment-based configuration</li>
-      </ul>
-<div class="flip-back-btns">
-  <a
-    href="https://eyecare-connect-b8anc9b97-apra-k.vercel.app/"
-    target="_blank"
-    rel="noopener"
-    class="flip-btn-cs"
-    >↗ Live site</a
-  >
-  <a
-    href="https://github.com/ap23hp/eyecare-connect"
-    target="_blank"
-    rel="noopener"
-    class="flip-btn-live"
-    >GitHub →</a
-  >
+  </section>
 </div>
-    </div>
-  </div>
-</div>
-          <!-- MILANI FLIP CARD -->
-          <div class="proj-card2-wrap reveal">
-            <div class="proj-card2-flip" id="flipCard1">
-              <!-- FRONT -->
-              <div class="proj-card2 flip-front-face">
-                <div class="proj-num2">02 · Full-Stack Wordpress Website</div>
-                <h3>Milani Core — City Routing Plugin</h3>
-                <p>
-                  Milani Core is a custom WordPress plugin built for Milani
-                  Electrical & Solar, a multi-city electrical and solar company
-                  operating across multiple provinces of Canada. The plugin
-                  includes custom post types, clean URL routing, geolocation,
-                  lead capture forms, and structured data. The plugin runs a
-                  3-step fallback chain, browser GPS → IP detection → manual
-                  postal code search to automatically redirect them to their
-                  nearest city's page. On the SEO side, the plugin dynamically
-                  generates LocalBusiness JSON-LD structured data for every city
-                  and service page
-                </p>
-                <div class="proj-tags">
-                  <span class="ptag">JavaScript</span>
-                  <span class="ptag">PHP</span
-                  ><span class="ptag">WordPress</span
-                  ><span class="ptag">Google Maps API</span
-                  ><span class="ptag">AJAX</span>
-                  <span class="ptag">Custom CPTs</span
-                  ><span class="ptag">Schema.org</span
-                  ><span class="ptag">MySQL</span>
-                </div>
-                <div class="flip-hint">flip for details ↷</div>
-              </div>
-              <!-- BACK -->
-              <div class="proj-card2 flip-back-face">
-                <div class="proj-num2">02 · WordPress Plugin</div>
-                <h3>What I built</h3>
-                <ul class="flip-bullets">
-                  <li>
-                    Built a custom WordPress plugin from scratch handling all
-                    site logic independent of the theme — CPTs, URL routing,
-                    geolocation, forms, and structured data
-                  </li>
-                  <li>
-                    Engineered a 3-step geolocation fallback chain (Browser GPS
-                    → IP detection → postal code search) to auto-redirect users
-                    to their nearest city's page
-                  </li>
-                  <li>
-                    Designed a clean URL architecture (<code
-                      style="font-size: 11px; opacity: 0.8"
-                      >/vancouver/ev-chargers/</code
-                    >) using custom rewrite rules mapping to CPT posts
-                  </li>
-                  <li>
-                    Built a city-aware shortcode system so Bricks Builder
-                    templates stay reusable across all city pages
-                  </li>
-                  <li>
-                    Implemented LocalBusiness JSON-LD structured data
-                    dynamically generated per city/service page for local SEO
-                  </li>
-                  <li>
-                    Integrated a lead capture system with reCAPTCHA v3, DB
-                    storage, and email notifications
-                  </li>
-                </ul>
-                <div class="flip-back-btns">
-                  <a href="milani-case-study.html" class="flip-btn-cs"
-                    >Read case study →</a
-                  >
-<a
-  
-    href="https://milanielec1dev.wpenginepowered.com/vancouver/"
-    target="_blank"
-    rel="noopener"
-    class="flip-btn-live"
-    >↗ Live site</a
-  >
-</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- GTG FLIP CARD -->
-          <div class="proj-card2-wrap reveal d1">
-            <div class="proj-card2-flip" id="flipCard2">
-              <!-- FRONT -->
-              <div class="proj-card2 flip-front-face">
-                <div class="proj-num2">03 · E-commerce UI</div>
-                <h3>GTG Perfumes Landing Page</h3>
-                <p>
-                  Subscription e-commerce landing page for a DTC fragrance
-                  client — 9 cart combinations, dynamic URL builder, image
-                  gallery and accordion. No frameworks, no page builders.
-                  Pixel-matched from Figma.
-                </p>
-                <div class="proj-tags">
-                  <span class="ptag">HTML / CSS</span>
-                  <span class="ptag">JavaScript</span>
-                  <span class="ptag">Figma → Code</span>
-                  <span class="ptag">Netlify</span>
-                </div>
-                <div class="flip-hint">flip for case study ↷</div>
-              </div>
-              <!-- BACK -->
-              <div class="proj-card2 flip-back-face">
-                <div class="proj-num2">03 · E-commerce UI</div>
-                <h3>What I solved</h3>
-                <ul class="flip-bullets">
-                  <li>
-                    9 cart combinations mapped to dynamic WooCommerce URLs —
-                    zero plugins
-                  </li>
-                  <li>
-                    Subscription expand/collapse via single DOM class toggle
-                  </li>
-                  <li>
-                    Image gallery — arrows, dots and thumbs all synced from one
-                    function
-                  </li>
-                  <li>
-                    3 breakpoints designed from scratch — Figma had desktop only
-                  </li>
-                </ul>
-                <div class="flip-back-btns">
-                  <a href="gtg.html" class="flip-btn-cs">Read case study →</a>
-                  <a
-                    href="https://gtgp.netlify.app/"
-                    target="_blank"
-                    rel="noopener"
-                    class="flip-btn-live"
-                    >↗ Live</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- AI CHEF FLIP CARD -->
-          <div class="proj-card2-wrap reveal d2">
-            <div class="proj-card2-flip" id="flipCard3">
-              <!-- FRONT -->
-              <div class="proj-card2 flip-front-face">
-                <div class="proj-num2">04 · React App</div>
-                <h3>AI Chef — Recipe Generator</h3>
-                <p>
-                  React app that generates recipes from available ingredients
-                  using an AI API. Component architecture with hooks, state
-                  management, and a serverless backend on Netlify Functions.
-                </p>
-                <div class="proj-tags">
-                  <span class="ptag">React</span>
-                  <span class="ptag">Vite</span>
-                  <span class="ptag">AI API</span>
-                  <span class="ptag">Hooks</span>
-                  <span class="ptag">Netlify Functions</span>
-                  <span class="ptag">Serverless</span>
-                </div>
-                <div class="flip-hint">flip for details ↷</div>
-              </div>
-              <!-- BACK -->
-              <div class="proj-card2 flip-back-face">
-                <div class="proj-num2">04 · React App</div>
-                <h3>What I built</h3>
-                <ul class="flip-bullets">
-                  <li>
-                    Component architecture — Header + Main split into reusable
-                    React components
-                  </li>
-                  <li>
-                    useState hooks managing ingredient list, recipe output, and
-                    loading/error states
-                  </li>
-                  <li>
-                    Serverless backend via Netlify Functions — API key never
-                    exposed to client
-                  </li>
-                  <li>
-                    React Markdown rendering AI-generated recipe output with
-                    custom CSS
-                  </li>
-                </ul>
-                <div class="flip-back-btns">
-                  <a
-                    href="https://ai-chef-react-by-apra.netlify.app/"
-                    target="_blank"
-                    rel="noopener"
-                    class="flip-btn-cs"
-                    >↗ Live site</a
-                  >
-                  <a
-                    href="https://github.com/ap23hp/AI-Chef-React"
-                    target="_blank"
-                    rel="noopener"
-                    class="flip-btn-live"
-                    >GitHub →</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <a
-            href="https://ap23hp.github.io/Weather-App/"
-            target="_blank"
-            rel="noopener"
-            class="proj-card2 reveal d1"
-          >
-            <div class="proj-num2">05 · JavaScript</div>
-            <h3>Weather App</h3>
-            <p>
-              Live weather app with location detection, dynamic UI updates and a
-              clean responsive interface. Deployed on GitHub Pages.
-            </p>
-            <div class="proj-tags">
-              <span class="ptag">JavaScript</span
-              ><span class="ptag">Weather API</span
-              ><span class="ptag">GitHub Pages</span>
-            </div>
-            <div
-              class="arr-box"
-              style="margin-top: 16px; align-self: flex-start"
-            >
-              ↗
-            </div>
-          </a>
-
-          <a
-            href="https://tenzies-game-apra.netlify.app/"
-            target="_blank"
-            rel="noopener"
-            class="proj-card2 reveal d2"
-          >
-            <div class="proj-num2">06 · React Game</div>
-            <h3>Tenzies Dice Game</h3>
-            <p>
-              Interactive React dice game with win detection, state management
-              across multiple components and smooth UI animations.
-            </p>
-            <div class="proj-tags">
-              <span class="ptag">React</span
-              ><span class="ptag">State Management</span
-              ><span class="ptag">Netlify</span>
-            </div>
-            <div
-              class="arr-box"
-              style="margin-top: 16px; align-self: flex-start"
-            >
-              ↗
-            </div>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <!-- ABOUT -->
-    <div class="wrap">
-      <section class="section" id="about">
-        <div class="reveal">
-          <div class="sec-eye">Background</div>
-          <div class="sec-title">About Me</div>
-        </div>
-        <div class="about-new">
-          <div class="about-stats-row reveal">
-            <div class="asc">
-              <div class="asc-num">3+</div>
-              <div class="asc-label">
-                Years of professional development experience
-              </div>
-            </div>
-            <div class="asc">
-              <div class="asc-num">8+</div>
-              <div class="asc-label">
-                Projects built and shipped across web &amp; React
-              </div>
-            </div>
-            <div class="asc">
-              <div class="asc-num">60%</div>
-              <div class="asc-label">
-                Faster city setup time delivered at Milani
-              </div>
-            </div>
-          </div>
-          <div class="about-bottom-row reveal d1">
-            <div class="about-bio">
-              <h3>Hi, I'm Apra 👋</h3>
-              <p>
-                I have gone from teaching kids their first line of Javascript,
-                to shipping React frontends for Red Hat, to architecting a
-                full-stack system solo for a Canadian solar company — code that
-                runs live for real cities, real customers, real leads.
-              </p>
-              <p>
-                Two years teaching <strong>Web developement</strong> at WhiteHat
-                Jr taught me to explain complex ideas simply. Building
-                <strong>React frontends</strong> at Compunnel for Red Hat's
-                platform taught me to work inside someone else's large codebase.
-                And at Milani, building a full-stack plugin — geolocation, 80+
-                pages, lead capture, all from scratch — taught me to own a
-                project when there's no one else to hand it to.
-              </p>
-              <div class="loc-badge">
-                London, UK · Right to work, No sponsorship needed
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
     <!-- CONTACT -->
     <div class="wrap">
       <section class="section" id="contact">
@@ -2352,10 +2439,10 @@
         });
       }
 
-   makeFlipCard("#flipCard0");
-makeFlipCard("#flipCard1");
-makeFlipCard("#flipCard2");
-makeFlipCard("#flipCard3");
+      makeFlipCard("#flipCard0");
+      makeFlipCard("#flipCard1");
+      makeFlipCard("#flipCard2");
+      makeFlipCard("#flipCard3");
     </script>
   </body>
 </html>
